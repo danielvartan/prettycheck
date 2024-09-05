@@ -17,7 +17,7 @@
 #' @examples
 #' x <- 1; y <- 1
 #' test_identical(x, y, type = "value")
-#' #> TRUE # Expected
+#' #> [1] TRUE # Expected
 #'
 #' x <- 1; y <- 2
 #' check_identical(x, y, type = "value")
@@ -25,7 +25,7 @@
 #'
 #' x <- letters; y <- LETTERS
 #' test_identical(x, y, type = "length")
-#' #> TRUE # Expected
+#' #> [1] TRUE # Expected
 #'
 #' x <- letters; y <- 1:2
 #' check_identical(x, y, type = "length")
@@ -33,11 +33,11 @@
 #'
 #' x <- "a"; y <- c("a", "b")
 #' test_identical(x, y, type = "class")
-#' #> TRUE # Expected
+#' #> [1] TRUE # Expected
 #'
 #' x <- "a"; y <- 1
 #' check_identical(x, y, type = "class")
-#' #> ! x and y must have identical classes. # Expected
+#' #> ! x and y must belong to the same class. # Expected
 test_identical <- function(..., type = "value") {
   assert_length(list(...), min_len = 2)
   assert_choice(type, c("value", "length", "class"))

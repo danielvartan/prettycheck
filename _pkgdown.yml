@@ -14,39 +14,26 @@ navbar:
     - reference
     - articles
     - news
-    right: github
+    right:
+    - search
+    - lightswitch
+    - github
   components:
     home: ~
     intro: ~
     articles: ~
 
 reference:
-- title: Tests
-  desc: >
-    `test_*()` functions return a logical flag.
-  contents:
-  - test_identical
-
 - title: Checks
   desc: >
-    `check_*()` functions return a logical flag and throw a warning message if
-    the condition is not met.
-  contents:
-  - check_identical
-
-- title: Assertions
-  desc: >
-    assert_*()` functions return a logical flag and throw an  error if the
+    `prettycheck` includes four main types of functions: `test_*()`,
+    `check_*()`, `assert_*()`, and `expect_*()`. The `test_*()` functions
+    return a logical flag; the `check_*()` functions return a logical flag and
+    throw a warning message if the condition is not met; and the`assert_*()`
+    and `expect_*()` functions return a logical flag and throw an error if the
     condition is not met.
   contents:
-  - assert_identical
-
-- title: Expectations
-  desc: >
-    expect_*()` functions return a logical flag and throw anerror if the
-    condition is not met (it differs from the error thrown by `assert_*()`).
-  contents:
-  - assert_identical
+  - test_identical
 
 authors:
   Daniel Vartanian:
