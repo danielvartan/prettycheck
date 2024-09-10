@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-09-08T22:33Z
+last_built: 2024-09-10T22:55Z
 urls:
   reference: https://danielvartan.github.io/prettycheck/reference
   article: https://danielvartan.github.io/prettycheck/articles
