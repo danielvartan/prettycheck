@@ -113,7 +113,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 4.4"
+      "version": ">= 4.3"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -247,11 +247,24 @@
     },
     "12": {
       "@type": "SoftwareApplication",
+      "identifier": "rlang",
+      "name": "rlang",
+      "version": ">= 1.1.4",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rlang"
+    },
+    "13": {
+      "@type": "SoftwareApplication",
       "identifier": "rutils",
       "name": "rutils",
       "sameAs": "https://github.com/danielvartan/rutils"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -264,7 +277,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "14": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -277,15 +290,15 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils",
-      "version": ">= 4.4.1"
+      "version": ">= 4.3"
     },
     "SystemRequirements": null
   },
-  "fileSize": "46.523KB",
+  "fileSize": "67.202KB",
   "citation": [
     {
       "@type": "CreativeWork",
@@ -304,5 +317,9 @@
       "description": "R package version 0.0.0.9000"
     }
   ],
-  "releaseNotes": "https://github.com/danielvartan/prettycheck/blob/master/NEWS.md"
+  "releaseNotes": "https://github.com/danielvartan/prettycheck/blob/master/NEWS.md",
+  "readme": "https://github.com/danielvartan/prettycheck/blob/main/README.md",
+  "contIntegration": ["https://github.com/danielvartan/prettycheck/actions/workflows/check-standard.yaml", "https://app.codecov.io/gh/danielvartan/prettycheck?branch=main"],
+  "developmentStatus": ["https://www.repostatus.org/#wip", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
+  "keywords": ["argument-checks", "assertions", "checks", "defensive-programming", "error-messages", "r", "r-package", "tests", "testthat", "validation", "assertive-programming"]
 }

@@ -1,3 +1,6 @@
+#' @include make_check.R
+NULL
+
 pkg_vars <- list(
   url_repo = "https://github.com/danielvartan/prettycheck",
   url_issues = "https://github.com/danielvartan/prettycheck/issues",

@@ -8,10 +8,12 @@
 # class.
 #'
 #' @param ... Objects to compare.
-#' @param type A string corresponding to the type of comparison to perform.
-#'   Valid values: `"value"`, `"length"`, and `"class"` (default: `"value"`).
+#' @param type (optional) a string corresponding to the type of comparison to
+#'   perform. Valid values: `"value"`, `"length"`, and `"class"` (default:
+#'   `"value"`).
 #'
 #' @template return_a
+#' @include make_check.R
 #' @export
 #'
 #' @examples
@@ -39,8 +41,10 @@
 #' check_identical(x, y, type = "class")
 #' #> ! x and y must belong to the same class. # Expected
 test_identical <- function(..., type = "value") {
-  assert_length(list(...), min_len = 2)
-  assert_choice(type, c("value", "length", "class"))
+  if (isTRUE(test_first_check_family())) {
+    assert_length(list(...), min_len = 2)
+    assert_choice(type, c("value", "length", "class"))
+  }
 
   values <- list(...)
 
@@ -66,58 +70,16 @@ test_identical <- function(..., type = "value") {
   }
 }
 
-#' @rdname test_identical
-#' @export
-check_identical <- function(..., type = "value") {
-  assert_length(list(...), min_len = 2)
-  assert_choice(type, c("value", "length", "class"))
-
-  identical_builder(..., type = type, fun = cli::cli_alert_warning)
-}
-
-#' @rdname test_identical
-#' @export
-assert_identical <- function(..., type = "value") {
-  assert_length(list(...), min_len = 2)
-  assert_choice(type, c("value", "length", "class"))
-
-  identical_builder(..., type = type, fun = cli::cli_abort)
-}
-
-#' @rdname test_identical
-#' @export
-expect_identical <- function(..., type = "value") {
-  assert_length(list(...), min_len = 2)
-  assert_choice(type, c("value", "length", "class"))
-
-  identical_builder(..., type = type, fun = cli::cli_abort, expected = TRUE)
-}
-
-identical_builder <- function(..., type, fun, expected = FALSE) {
-  assert_length(list(...), min_len = 2)
-  assert_choice(type, c("value", "length", "class"))
-  assert_function(fun)
-  assert_flag(expected)
-
-  test <- test_identical(..., type = type)
-
-  if (type == "value" && isFALSE(test)) {
-    message_identical(..., type = "value", expected = expected) |> fun()
-  } else if (type == "length" && isFALSE(test)) {
-    message_identical(..., type = "length", expected = expected) |> fun()
-  } else if (type == "class" && isFALSE(test)) {
-    message_identical(..., type = "class", expected = expected) |> fun()
-  } else {
-    invisible(test)
+message_identical <- function(..., type = "value", names) {
+  if (isTRUE(test_first_check_family())) {
+    assert_length(list(...), min_len = 2)
+    assert_choice(type, c("value", "length", "class"))
+    assert_character(names)
   }
-}
 
-message_identical <- function(..., type = "value", expected = FALSE) {
-  assert_length(list(...), min_len = 2)
-  assert_choice(type, c("value", "length", "class"))
-  assert_flag(expected)
+  expected <- is_type_expected(rlang::caller_call())
 
-  names <- collapse_names(..., deparsed = TRUE, color = "red", last = "and")
+  names <- collapse_names(color = "red", names = names, last = "and")
 
   if (type == "value" && isFALSE(expected)) {
     glue::glue("{names} must have identical values.")
@@ -135,3 +97,15 @@ message_identical <- function(..., type = "value", expected = FALSE) {
     else_error()
   }
 }
+
+#' @rdname test_identical
+#' @export
+check_identical <- make_check("check", "identical")
+
+#' @rdname test_identical
+#' @export
+assert_identical <- make_check("assert", "identical")
+
+#' @rdname test_identical
+#' @export
+expect_identical <- make_check("expect", "identical")

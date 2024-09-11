@@ -1,3 +1,6 @@
+#' @include make_check.R
+NULL
+
 # This is temporary!
 
 test_true <- checkmate::test_true

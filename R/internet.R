@@ -1,3 +1,6 @@
+#' @include make_check.R
+NULL
+
 test_internet <- curl::has_internet()
 
 # check_internet

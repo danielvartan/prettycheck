@@ -1,3 +1,6 @@
+#' @include make_check.R
+NULL
+
 # This is temporary!
 
 any_null <- function(x, na_rm = TRUE) any_builder(x, is.null, na_rm)

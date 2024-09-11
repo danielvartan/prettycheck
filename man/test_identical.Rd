@@ -18,8 +18,9 @@ expect_identical(..., type = "value")
 \arguments{
 \item{...}{Objects to compare.}
 
-\item{type}{A string corresponding to the type of comparison to perform.
-Valid values: \code{"value"}, \code{"length"}, and \code{"class"} (default: \code{"value"}).}
+\item{type}{(optional) a string corresponding to the type of comparison to
+perform. Valid values: \code{"value"}, \code{"length"}, and \code{"class"} (default:
+\code{"value"}).}
 }
 \value{
 \itemize{

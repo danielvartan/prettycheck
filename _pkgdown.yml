@@ -34,6 +34,8 @@ reference:
     condition is not met.
   contents:
   - test_identical
+  - test_length
+  - test_pick
 
 authors:
   Daniel Vartanian:

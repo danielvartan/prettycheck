@@ -1,3 +1,6 @@
+#' @include make_check.R
+NULL
+
 test_period <- function(
     x,
     lower = - Inf,

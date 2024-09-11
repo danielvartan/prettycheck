@@ -2,6 +2,9 @@
 # `is.numeric(lubridate::duration())`. See
 # https://github.com/tidyverse/lubridate/issues/942 to learn more.
 
+#' @include make_check.R
+NULL
+
 test_numeric <- function(
     x,
     lower = -Inf,
@@ -28,7 +31,8 @@ test_numeric <- function(
 }
 
 check_numeric <- function(
-    x, lower = - Inf,
+    x,
+    lower = - Inf,
     upper = Inf,
     any.missing = TRUE,
     null_ok = FALSE,

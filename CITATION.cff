@@ -44,7 +44,7 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  version: '>= 4.4'
+  version: '>= 4.3'
 - type: software
   title: checkmate
   abstract: 'checkmate: Fast and Versatile Argument Checks'
@@ -212,6 +212,22 @@ references:
   doi: 10.32614/CRAN.package.magrittr
   version: '>= 2.0.3'
 - type: software
+  title: rlang
+  abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
+  notes: Imports
+  url: https://rlang.r-lib.org
+  repository: https://CRAN.R-project.org/package=rlang
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2024'
+  doi: 10.32614/CRAN.package.rlang
+  version: '>= 1.1.4'
+- type: software
   title: rutils
   abstract: 'rutils: Utility Functions for R'
   notes: Imports
@@ -262,7 +278,7 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  version: '>= 4.4.1'
+  version: '>= 4.3'
 - type: software
   title: covr
   abstract: 'covr: Test Coverage for Packages'

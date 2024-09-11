@@ -1,3 +1,6 @@
+#' @include make_check.R
+NULL
+
 test_interactive <- rlang::is_interactive
 
 # check_interactive
