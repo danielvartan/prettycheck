@@ -27,11 +27,12 @@ reference:
 - title: Checks
   desc: >
     `prettycheck` includes four main types of functions: `test_*()`,
-    `check_*()`, `assert_*()`, and `expect_*()`. The `test_*()` functions
-    return a logical flag; the `check_*()` functions return a logical flag and
-    throw a warning message if the condition is not met; and the`assert_*()`
-    and `expect_*()` functions return a logical flag and throw an error if the
-    condition is not met.
+    `check_*()`, `assert_*()`, and `expect_*()`.
+
+    The `test_*()` functions return a logical flag; the `check_*()` functions
+    return a logical flag and throw a warning message if the condition is not
+    met; and the`assert_*()` and `expect_*()` functions return a logical flag
+    and throw an error if the condition is not met.
   contents:
   - test_identical
   - test_length

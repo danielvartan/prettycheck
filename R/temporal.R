@@ -1,14 +1,14 @@
 #' @include make_check.R
 NULL
 
-test_temporal <- function(x, any.missing = TRUE, null_ok = FALSE, rm = NULL) {
-  assert_flag(any.missing)
+test_temporal <- function(x, any_missing = TRUE, null_ok = FALSE, rm = NULL) {
+  assert_flag(any_missing)
   assert_flag(null_ok)
   assert_character(rm, any.missing = FALSE, null.ok = TRUE)
 
   if (is.null(x) && isTRUE(null_ok)) {
     TRUE
-  } else if (any(is.na(x)) && isFALSE(any.missing)) {
+  } else if (any(is.na(x)) && isFALSE(any_missing)) {
     FALSE
   } else {
     classes <- c("Duration", "Period", "difftime", "hms", "Date", "POSIXct",
@@ -25,16 +25,16 @@ test_temporal <- function(x, any.missing = TRUE, null_ok = FALSE, rm = NULL) {
 
 check_temporal <- function(
     x,
-    any.missing = TRUE,
+    any_missing = TRUE,
     null_ok = FALSE,
     name = deparse(substitute(x))
   ) {
-  assert_flag(any.missing)
+  assert_flag(any_missing)
   assert_flag(null_ok)
 
   if (is.null(x) && isTRUE(null_ok)) {
     TRUE
-  } else if (any(is.na(x)) && isFALSE(any.missing)) {
+  } else if (any(is.na(x)) && isFALSE(any_missing)) {
     paste0(glue::single_quote(name), " cannot have missing values")
   } else if (is.null(x) && isFALSE(null_ok)) {
     paste0(glue::single_quote(name), " cannot be 'NULL'")

@@ -49,7 +49,9 @@ LazyDataCompression: bzip2
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Collate: 
+    'mocks.R'
     'make_check.R'
+    'a_include.R'
     'access.R'
     'any.R'
     'array.R'

@@ -1,5 +1,9 @@
 library(checkmate)
+library(hms)
+library(lubridate)
+library(mockr)
 library(prettycheck)
+library(rlang)
 library(testthat)
 
 test_check("prettycheck")

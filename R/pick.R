@@ -107,17 +107,20 @@ message_pick <- function(
 
   names <- collapse_names(color = "red", names = names, last = "and")
 
-  all_null <-
+  null_test <-
     list(...) |>
     lapply(is.null) |>
-    unlist() |>
-    all(na.rm = TRUE)
+    unlist()
+
+  all_null <- null_test |> all(na.rm = TRUE)
+  null_values <- list(...)[null_test]
+  not_null_values <- list(...)[!null_test]
 
   if (isTRUE(all_null)) {
     glue::glue("{names} cannot all be {{.strong NULL}}.")
-  } else if (!is.null(pick) && length(list(...)) < pick) {
+  } else if (!is.null(pick) && length(not_null_values) < pick) {
     glue::glue("You must pick {{.strong {pick}}} of the {names} arguments.")
-  } else if (!is.null(pick)) {
+  } else if (!is.null(pick) && length(not_null_values) > pick) {
     glue::glue("Only {{.strong {pick}}} of {names} arguments can be assign.")
   } else if (!is.null(min_pick)) {
     glue::glue(

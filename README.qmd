@@ -28,6 +28,8 @@ Assertive programming doesn’t have to be ugly. If ultra-fast checks are not yo
 `prettycheck` also adheres to the [tidyverse principles](https://tidyverse.tidyverse.org/articles/manifesto.html) and
 integrates well with the [tidyverse ecosystem](https://www.tidyverse.org/).
 
+If you need a faster system for assertive programming, we recommend the  [`checkmate`](https://mllg.github.io/checkmate/) package. Since `prettycheck` uses the same structure for checks, transitioning to `checkmate` is straightforward. You can also use both packages together seamlessly.
+
 ## Installation
 
 You can install `prettycheck` using the [`remotes`](https://github.com/r-lib/remotes) package:
@@ -40,39 +42,15 @@ remotes::install_github("danielvartan/prettycheck")
 
 ## Usage
 
-Like [`checkmate`](https://mllg.github.io/checkmate/), `prettycheck` includes four main types of functions: `test_*()`, `check_*()`, `assert_*()`, and `expect_*()`. The `test_*()` functions return a logical flag; the `check_*()` functions return a logical flag and throw a warning message if the condition is not met; and the`assert_*()` and `expect_*()` functions return a logical flag and throw an error if the condition is not met.
+Like [`checkmate`](https://mllg.github.io/checkmate/), `prettycheck` includes four main types of functions: `test_*()`, `check_*()`, `assert_*()`, and `expect_*()`.
 
-Here are some of the functions available:
+The `test_*()` functions return a logical flag; the `check_*()` functions return a logical flag and throw a warning message if the condition is not met; and the`assert_*()` and `expect_*()` functions return a logical flag and throw an error if the condition is not met.
 
-> **Not yet implemented!**
+Here are some of the functions available for now:
 
-- `assert_character()`: Assert that an object is a character vector.
-- `assert_complex()`: Assert that an object is a complex vector.
-- `assert_date()`: Assert that an object is a date vector.
-- `assert_double()`: Assert that an object is a double vector.
-- `assert_factor()`: Assert that an object is a factor vector.
-- `assert_integer()`: Assert that an object is an integer vector.
-- `assert_list()`: Assert that an object is a list.
-- `assert_logical()`: Assert that an object is a logical vector.
-- `assert_matrix()`: Assert that an object is a matrix.
-- `assert_numeric()`: Assert that an object is a numeric vector.
-- `assert_vector()`: Assert that an object is a vector.
-- `assert_positive()`: Assert that an object is a positive number.
-- `assert_negative()`: Assert that an object is a negative number.
-- `assert_infinite()`: Assert that an object is infinite.
-- `assert_finite()`: Assert that an object is finite.
-- `assert_na()`: Assert that an object is `NA`.
-- `assert_null()`: Assert that an object is `NULL`.
-- `assert_empty()`: Assert that an object is empty.
-- `assert_not_empty()`: Assert that an object is not empty.
-- `assert_equal()`: Assert that two objects are equal.
-- `assert_not_equal()`: Assert that two objects are not equal.
-- `assert_identical()`: Assert that two objects are identical.
-- `assert_not_identical()`: Assert that two objects are not identical.
-- `assert_in()`: Assert that an object is in a set.
-- `assert_not_in()`: Assert that an object is not in a set.
-- `assert_between()`: Assert that an object is between two values.
-- `assert_not_between()`: Assert that an object is not between two values.
+- [`test_identical()`](https://danielvartan.github.io/prettycheck/reference/test_identical.html) `check_identical()` `assert_identical()` `expect_identical()`: Check if multiple objects are identical.
+- [`test_length()`](https://danielvartan.github.io/prettycheck/reference/test_length.html) `check_length()` `assert_length()`: Check if an argument has a specific length.
+- [`test_pick()`](https://danielvartan.github.io/prettycheck/reference/test_pick.html) `check_pick()` `assert_pick()`: Check how many arguments were picked.
 
 Click [here](https://danielvartan.github.io/prettycheck/) to see the full list of functions.
 

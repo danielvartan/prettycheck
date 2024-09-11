@@ -5,15 +5,15 @@ test_posixt <- function(
     x,
     lower = - Inf,
     upper = Inf,
-    any.missing = TRUE,
+    any_missing = TRUE,
     null_ok = FALSE
   ) {
-  assert_flag(any.missing)
+  assert_flag(any_missing)
   assert_flag(null_ok)
 
   if (is.null(x) && isTRUE(null_ok)) {
     TRUE
-  } else if (any(is.na(x)) && isFALSE(any.missing)) {
+  } else if (any(is.na(x)) && isFALSE(any_missing)) {
     FALSE
   } else if (lubridate::is.POSIXt(x) &&
                !all(x >= lower & x <= upper, na.rm = TRUE)) {
@@ -27,16 +27,16 @@ check_posixt <- function(
     x,
     lower = - Inf,
     upper = Inf,
-    any.missing = TRUE,
+    any_missing = TRUE,
     null_ok = FALSE,
     name = deparse(substitute(x))
   ) {
-  assert_flag(any.missing)
+  assert_flag(any_missing)
   assert_flag(null_ok)
 
   if (is.null(x) && isTRUE(null_ok)) {
     TRUE
-  } else if (any(is.na(x)) && isFALSE(any.missing)) {
+  } else if (any(is.na(x)) && isFALSE(any_missing)) {
     paste0(glue::single_quote(name), " cannot have missing values")
   } else if (is.null(x) && isFALSE(null_ok)) {
     paste0(glue::single_quote(name), " cannot be 'NULL'")

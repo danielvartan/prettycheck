@@ -9,16 +9,10 @@ make_check <- function(type, family, arg_names = NULL) {
   fun_exp <- str2expression(
     glue::glue(
       "
-      function({ifelse(dots, '...', '')}) {{
+      function({ifelse(isTRUE(dots), '...', '')}) {{
         obj_list <- env_get_list()
 
-        {
-          ifelse(
-            isTRUE(dots),
-            'dots_list <- list(...)',
-            ''
-          )
-        }
+        {ifelse(isTRUE(dots), 'dots_list <- list(...)', '')}
 
         test <- do.call(
           '{paste0('test_', family)}',
@@ -37,10 +31,6 @@ make_check <- function(type, family, arg_names = NULL) {
                     'obj_list, ',
                     'list(names = ',
                       'c(',
-                        #paste0(
-                        # glue::double_quote(arg_names),
-                        #  collapse = ', '
-                        #),
                         paste0(
                           'paste0(',
                             'deparse(substitute(',
@@ -64,6 +54,8 @@ make_check <- function(type, family, arg_names = NULL) {
                 'cli::cli_alert_warning()'
               )
             }
+        }} else {{
+          invisible(TRUE)
         }}
       }}
       "
