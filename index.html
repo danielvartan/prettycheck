@@ -75,6 +75,7 @@
 </h2>
 <p>Assertive programming doesn’t have to be ugly. If ultra-fast checks are not your top priority, <code>prettycheck</code> is for you. It provides a set of functions that produce pretty and informative error messages, primarily relying on the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code></a> package from <a href="https://github.com/r-lib" class="external-link">r-lib</a>. Inspired by the <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a> package, it places a strong emphasis on aesthetics and user experience.</p>
 <p><code>prettycheck</code> also adheres to the <a href="https://tidyverse.tidyverse.org/articles/manifesto.html" class="external-link">tidyverse principles</a> and integrates well with the <a href="https://www.tidyverse.org/" class="external-link">tidyverse ecosystem</a>.</p>
+<p>If you need a faster system for assertive programming, we recommend the <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a> package. Since <code>prettycheck</code> uses the same structure for checks, transitioning to <code>checkmate</code> is straightforward. You can also use both packages together seamlessly.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -86,66 +87,16 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Like <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a>, <code>prettycheck</code> includes four main types of functions: <code>test_*()</code>, <code>check_*()</code>, <code>assert_*()</code>, and <code>expect_*()</code>. The <code>test_*()</code> functions return a logical flag; the <code>check_*()</code> functions return a logical flag and throw a warning message if the condition is not met; and the<code>assert_*()</code> and <code>expect_*()</code> functions return a logical flag and throw an error if the condition is not met.</p>
-<p>Here are some of the functions available:</p>
-<blockquote>
-<p><strong>Not yet implemented!</strong></p>
-</blockquote>
+<p>Like <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a>, <code>prettycheck</code> includes four main types of functions: <code>test_*()</code>, <code>check_*()</code>, <code>assert_*()</code>, and <code>expect_*()</code>.</p>
+<p>The <code>test_*()</code> functions return a logical flag; the <code>check_*()</code> functions return a logical flag and throw a warning message if the condition is not met; and the<code>assert_*()</code> and <code>expect_*()</code> functions return a logical flag and throw an error if the condition is not met.</p>
+<p>Here are some of the functions available for now:</p>
 <ul>
 <li>
-<code>assert_character()</code>: Assert that an object is a character vector.</li>
+<a href="https://danielvartan.github.io/prettycheck/reference/test_identical.html"><code>test_identical()</code></a> <code><a href="reference/test_identical.html">check_identical()</a></code> <code><a href="reference/test_identical.html">assert_identical()</a></code> <code><a href="reference/test_identical.html">expect_identical()</a></code>: Check if multiple objects are identical.</li>
 <li>
-<code>assert_complex()</code>: Assert that an object is a complex vector.</li>
+<a href="https://danielvartan.github.io/prettycheck/reference/test_length.html"><code>test_length()</code></a> <code><a href="reference/test_length.html">check_length()</a></code> <code><a href="reference/test_length.html">assert_length()</a></code>: Check if an argument has a specific length.</li>
 <li>
-<code>assert_date()</code>: Assert that an object is a date vector.</li>
-<li>
-<code>assert_double()</code>: Assert that an object is a double vector.</li>
-<li>
-<code>assert_factor()</code>: Assert that an object is a factor vector.</li>
-<li>
-<code>assert_integer()</code>: Assert that an object is an integer vector.</li>
-<li>
-<code>assert_list()</code>: Assert that an object is a list.</li>
-<li>
-<code>assert_logical()</code>: Assert that an object is a logical vector.</li>
-<li>
-<code>assert_matrix()</code>: Assert that an object is a matrix.</li>
-<li>
-<code>assert_numeric()</code>: Assert that an object is a numeric vector.</li>
-<li>
-<code>assert_vector()</code>: Assert that an object is a vector.</li>
-<li>
-<code>assert_positive()</code>: Assert that an object is a positive number.</li>
-<li>
-<code>assert_negative()</code>: Assert that an object is a negative number.</li>
-<li>
-<code>assert_infinite()</code>: Assert that an object is infinite.</li>
-<li>
-<code>assert_finite()</code>: Assert that an object is finite.</li>
-<li>
-<code>assert_na()</code>: Assert that an object is <code>NA</code>.</li>
-<li>
-<code>assert_null()</code>: Assert that an object is <code>NULL</code>.</li>
-<li>
-<code>assert_empty()</code>: Assert that an object is empty.</li>
-<li>
-<code>assert_not_empty()</code>: Assert that an object is not empty.</li>
-<li>
-<code>assert_equal()</code>: Assert that two objects are equal.</li>
-<li>
-<code>assert_not_equal()</code>: Assert that two objects are not equal.</li>
-<li>
-<code><a href="reference/test_identical.html">assert_identical()</a></code>: Assert that two objects are identical.</li>
-<li>
-<code>assert_not_identical()</code>: Assert that two objects are not identical.</li>
-<li>
-<code>assert_in()</code>: Assert that an object is in a set.</li>
-<li>
-<code>assert_not_in()</code>: Assert that an object is not in a set.</li>
-<li>
-<code>assert_between()</code>: Assert that an object is between two values.</li>
-<li>
-<code>assert_not_between()</code>: Assert that an object is not between two values.</li>
+<a href="https://danielvartan.github.io/prettycheck/reference/test_pick.html"><code>test_pick()</code></a> <code><a href="reference/test_pick.html">check_pick()</a></code> <code><a href="reference/test_pick.html">assert_pick()</a></code>: Check how many arguments were picked.</li>
 </ul>
 <p>Click <a href="https://danielvartan.github.io/prettycheck/">here</a> to see the full list of functions.</p>
 </div>
