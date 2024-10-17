@@ -47,8 +47,6 @@ test_numeric <- function() {
 formals(test_numeric) <- formals_numeric
 
 message_numeric <- function() {
-  checkmate::assert_string(.name)
-
   .name <- collapse_names(.name, color = "red")
 
   if (!checkmate::test_numeric(x)) {
