@@ -57,7 +57,9 @@
 <span></span>
 <span><span class="fu">check_length</span><span class="op">(</span><span class="va">x</span>, len <span class="op">=</span> <span class="cn">NULL</span>, min_len <span class="op">=</span> <span class="cn">NULL</span>, max_len <span class="op">=</span> <span class="cn">NULL</span>, null_ok <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">assert_length</span><span class="op">(</span><span class="va">x</span>, len <span class="op">=</span> <span class="cn">NULL</span>, min_len <span class="op">=</span> <span class="cn">NULL</span>, max_len <span class="op">=</span> <span class="cn">NULL</span>, null_ok <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">assert_length</span><span class="op">(</span><span class="va">x</span>, len <span class="op">=</span> <span class="cn">NULL</span>, min_len <span class="op">=</span> <span class="cn">NULL</span>, max_len <span class="op">=</span> <span class="cn">NULL</span>, null_ok <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">expect_length</span><span class="op">(</span><span class="va">x</span>, len <span class="op">=</span> <span class="cn">NULL</span>, min_len <span class="op">=</span> <span class="cn">NULL</span>, max_len <span class="op">=</span> <span class="cn">NULL</span>, null_ok <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -92,12 +94,12 @@ if <code>x</code> can be <code>NULL</code> (default: <code>FALSE</code>).</p></d
     <h2>Value</h2>
 
 <ul><li><p><code>test_*</code>: <code>TRUE</code> if it passes the test; <code>FALSE</code> otherwise.</p></li>
-<li><p><code>check_*</code>: An <a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a> <code>TRUE</code> if it passes the test;
-a warning message otherwise.</p></li>
-<li><p><code>assertion_*</code>: An <a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a> <code>TRUE</code> if it passes the test;
-an error message otherwise.</p></li>
-<li><p><code>expect_*</code>: An <a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a> <code>TRUE</code> if it passes the test;
-an error message otherwise.</p></li>
+<li><p><code>check_*</code>: The same input as <a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a> if it passes the
+test; a warning message otherwise.</p></li>
+<li><p><code>assertion_*</code>: The same input as <a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a> if it passes the
+test; an error message otherwise.</p></li>
+<li><p><code>expect_*</code>: The same input as <a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a> if it passes the
+test; an error message otherwise.</p></li>
 </ul></div>
 
     <div id="ref-examples">
@@ -119,7 +121,7 @@ an error message otherwise.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>

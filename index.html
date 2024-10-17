@@ -75,7 +75,7 @@
 </h2>
 <p>Assertive programming doesn’t have to be ugly. If ultra-fast checks are not your top priority, <code>prettycheck</code> is for you. It provides a set of functions that produce pretty and informative error messages, primarily relying on the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code></a> package from <a href="https://github.com/r-lib" class="external-link">r-lib</a>. Inspired by the <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a> package, it places a strong emphasis on aesthetics and user experience.</p>
 <p><code>prettycheck</code> also adheres to the <a href="https://tidyverse.tidyverse.org/articles/manifesto.html" class="external-link">tidyverse principles</a> and integrates well with the <a href="https://www.tidyverse.org/" class="external-link">tidyverse ecosystem</a>.</p>
-<p>If you need a faster system for assertive programming, we recommend the <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a> package. Since <code>prettycheck</code> uses the same structure for checks, transitioning to <code>checkmate</code> is straightforward. You can also use both packages together seamlessly.</p>
+<p>If you need a faster system for assertive programming, we recommend the <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a> package. Since <code>prettycheck</code> uses the same structure for checks, transitioning to <code>checkmate</code> is straightforward. You can also use both packages together seamlessly, since <code>prettycheck</code> also uses <code>checkmate</code> under the hood.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -87,14 +87,14 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Like <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a>, <code>prettycheck</code> includes four main types of functions: <code>test_*()</code>, <code>check_*()</code>, <code>assert_*()</code>, and <code>expect_*()</code>.</p>
-<p>The <code>test_*()</code> functions return a logical flag; the <code>check_*()</code> functions return a logical flag and throw a warning message if the condition is not met; and the<code>assert_*()</code> and <code>expect_*()</code> functions return a logical flag and throw an error if the condition is not met.</p>
+<p>Like <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a>, <code>prettycheck</code> includes four family of functions: <code>test_*()</code>, <code>check_*()</code>, <code>assert_*()</code>, and <code>expect_*()</code>.</p>
+<p>The <code>test_*()</code> functions return a logical flag; the <code>check_*()</code> functions throw a warning message if the condition is not met; and the <code>assert_*()</code> and <code>expect_*()</code> functions throw an error if the condition is not met. If the condition is met, <code>check_*()</code>, <code>assert_*()</code>, and <code>expect_*()</code> functions return the input object invisibly.</p>
 <p>Here are some of the functions available for now:</p>
 <ul>
 <li>
 <a href="https://danielvartan.github.io/prettycheck/reference/test_identical.html"><code>test_identical()</code></a> <code><a href="reference/test_identical.html">check_identical()</a></code> <code><a href="reference/test_identical.html">assert_identical()</a></code> <code><a href="reference/test_identical.html">expect_identical()</a></code>: Check if multiple objects are identical.</li>
 <li>
-<a href="https://danielvartan.github.io/prettycheck/reference/test_length.html"><code>test_length()</code></a> <code><a href="reference/test_length.html">check_length()</a></code> <code><a href="reference/test_length.html">assert_length()</a></code>: Check if an argument has a specific length.</li>
+<a href="https://danielvartan.github.io/prettycheck/reference/test_length.html"><code>test_length()</code></a> <code><a href="reference/test_length.html">check_length()</a></code> <code><a href="reference/test_length.html">assert_length()</a></code> <code><a href="reference/test_length.html">expect_length()</a></code>: Check if an argument has a specific length.</li>
 <li>
 <a href="https://danielvartan.github.io/prettycheck/reference/test_pick.html"><code>test_pick()</code></a> <code><a href="reference/test_pick.html">check_pick()</a></code> <code><a href="reference/test_pick.html">assert_pick()</a></code>: Check how many arguments were picked.</li>
 </ul>
@@ -112,7 +112,7 @@
 <p><code>prettycheck</code> code is released under the <a href="https://opensource.org/license/mit/" class="external-link">MIT license</a>.</p>
 <p><br></p>
 <p>Become an <code>prettycheck</code> supporter!</p>
-<p>Click <a href="https://github.com/sponsors/danielvartan" class="external-link">here</a> to make a donation. Please indicate the <code>actverse</code> package in your donation message.</p>
+<p>Click <a href="https://github.com/sponsors/danielvartan" class="external-link">here</a> to make a donation. Please indicate the <code>prettycheck</code> package in your donation message.</p>
 </div>
 </div>
   </div>
@@ -138,6 +138,7 @@
 <h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
 
@@ -164,7 +165,7 @@
 <li><a href="https://github.com/danielvartan/prettycheck/actions/workflows/check-standard.yaml" class="external-link"><img src="https://github.com/danielvartan/prettycheck/actions/workflows/check-standard.yaml/badge.svg" alt="R-CMD-check.yaml"></a></li>
 <li><a href="https://app.codecov.io/gh/danielvartan/prettycheck?branch=main" class="external-link"><img src="https://codecov.io/gh/danielvartan/prettycheck/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://choosealicense.com/licenses/mit/" class="external-link"><img src="https://img.shields.io/badge/license-MIT-green.png" alt="License: MIT"></a></li>
-<li><a href="code_of_conduct.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="Contributor Covenant"></a></li>
+<li><a href="CODE_OF_CONDUCT.html"><img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" alt="Contributor Covenant"></a></li>
 </ul>
 </div>
 
@@ -179,7 +180,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
