@@ -53,4 +53,7 @@ check_period <- function(
 
 assert_period <- checkmate::makeAssertionFunction(check_period)
 
-# expect_period
+expect_period <- checkmate::makeExpectationFunction(
+  check_period,
+  use.namespace = TRUE
+)

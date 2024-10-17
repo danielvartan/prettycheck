@@ -5,7 +5,7 @@
 #' `r lifecycle::badge("experimental")`
 #'
 # `*_pick()` check how many arguments the user picked. It can be used when you
-#' want to limit the number of arguments that can be assigne in a function.
+#' want to limit the number of arguments that can be assigned in a function.
 #'
 #' @param ... Objects to compare.
 #' @param pick (optional) an integer number indicating the expected number of
@@ -141,5 +141,3 @@ check_pick <- make_check("check", "pick")
 #' @rdname test_pick
 #' @export
 assert_pick <- make_check("assert", "pick")
-
-# expect_pick

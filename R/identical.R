@@ -77,22 +77,14 @@ message_identical <- function(..., type = "value", names) {
     assert_character(names)
   }
 
-  expected <- is_type_expected(rlang::caller_call())
-
   names <- collapse_names(color = "red", names = names, last = "and")
 
-  if (type == "value" && isFALSE(expected)) {
+  if (type == "value") {
     glue::glue("{names} must have identical values.")
-  } else if (type == "length" && isFALSE(expected)) {
+  } else if (type == "length") {
     glue::glue("{names} must have identical lengths.")
-  } else if (type == "class" && isFALSE(expected)) {
+  } else if (type == "class") {
     glue::glue("{names} must belong to the same class.")
-  } else if (type == "value" && isTRUE(expected)) {
-    glue::glue("{names} are expected to have identical values.")
-  } else if (type == "length" && isTRUE(expected)) {
-    glue::glue("{names} are expected to have identical lengths.")
-  } else if (type == "class" && isTRUE(expected)) {
-    glue::glue("{names} are expected to belong to the same class.")
   } else {
     else_error()
   }

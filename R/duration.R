@@ -43,4 +43,7 @@ check_duration <- function(x, lower = - Inf, upper = Inf, any.missing = TRUE,
 
 assert_duration <- checkmate::makeAssertionFunction(check_duration)
 
-# expect_duration
+expect_duration <- checkmate::makeExpectationFunction(
+  check_duration,
+  use.namespace = TRUE
+)

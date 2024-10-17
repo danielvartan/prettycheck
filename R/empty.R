@@ -21,4 +21,7 @@ check_empty <- function(
 
 assert_empty <- checkmate::makeAssertionFunction(check_empty)
 
-# expect_empty
+expect_empty <- checkmate::makeExpectationFunction(
+  check_empty,
+  use.namespace = TRUE
+)

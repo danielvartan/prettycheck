@@ -7,7 +7,7 @@ test_data <- function(data, package) {
 
   assert_namespace(package)
   utils::data(list = data, package = package, envir = environment()) |>
-    rutils:::shush()
+    rutils::shush()
 
   data %in% ls()
 }

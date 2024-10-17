@@ -2,68 +2,130 @@
 # `is.numeric(lubridate::duration())`. See
 # https://github.com/tidyverse/lubridate/issues/942 to learn more.
 
-#' @include make_check.R
-NULL
+formals_numeric <- alist(
+  x = ,
+  lower = -Inf,
+  upper = Inf,
+  finite = FALSE,
+  any_missing = TRUE,
+  all_missing = TRUE,
+  len = NULL,
+  min_len = NULL,
+  max_len = NULL,
+  unique = FALSE,
+  sorted = FALSE,
+  names = NULL,
+  typed_missing = FALSE,
+  null_ok = FALSE
+)
 
-test_numeric <- function(
+test_numeric <- function() {
+  test <- checkmate::test_numeric(
     x,
-    lower = -Inf,
-    upper = Inf,
-    any.missing = TRUE,
-    null_ok = FALSE) {
-  assert_number(lower)
-  assert_number(upper)
-  assert_flag(any.missing)
-  assert_flag(null_ok)
+    lower = lower,
+    upper = upper,
+    finite = finite,
+    any.missing = any_missing,
+    all.missing = all_missing,
+    len = len,
+    min.len = min_len,
+    max.len = max_len,
+    unique = unique,
+    sorted = sorted,
+    names = names,
+    typed.missing = typed_missing,
+    null.ok = null_ok
+  )
 
-  classes <- c("integer", "double", "numeric")
-
-  if (is.null(x) && isTRUE(null_ok)) {
-    TRUE
-  } else if (any(is.na(x)) && isFALSE(any.missing)) {
-    FALSE
-  } else if (test_subset(class(x)[1], classes) &&
-               !all(x >= lower & x <= upper, na.rm = TRUE)) {
+  if (lubridate::is.duration(x)) {
     FALSE
   } else {
-    test_subset(class(x)[1], classes)
+    test
   }
 }
 
-check_numeric <- function(
-    x,
-    lower = - Inf,
-    upper = Inf,
-    any.missing = TRUE,
-    null_ok = FALSE,
-    name = deparse(substitute(x))
-  ) {
-  assert_flag(any.missing)
-  assert_flag(null_ok)
+formals(test_numeric) <- formals_numeric
 
-  classes <- c("integer", "double", "numeric")
+message_numeric <- function() {
+  checkmate::assert_string(.name)
 
-  if (is.null(x) && isTRUE(null_ok)) {
-    TRUE
-  } else if (any(is.na(x)) && isFALSE(any.missing)) {
-    paste0(glue::single_quote(name), " cannot have missing values")
-  } else if (is.null(x) && isFALSE(null_ok)) {
-    paste0(glue::single_quote(name), " cannot be 'NULL'")
-  } else if (test_subset(class(x)[1], classes) &&
-               !all(x >= lower, na.rm = TRUE)) {
-    paste0("Element ", which(x < lower)[1], " is not >= ", lower)
-  } else if (test_subset(class(x)[1], classes) &&
-               !all(x <= upper, na.rm = TRUE)) {
-    paste0("Element ", which(x > upper)[1], " is not <= ", upper)
-  } else  if (!test_numeric(x)) {
-    paste0("Must be of type 'numeric', not ", class_collapse(x))
+  .name <- collapse_names(.name, color = "red")
+
+  if (!checkmate::test_numeric(x)) {
+    glue::glue(
+      "{.name} must be of type {collapse_names('numeric', color = 'blue')}",
+      ", not {{.strong {class(x)[1]}}."
+    )
+  } else if (!is.null(len) && !length(x) == len) {
+    glue::glue(
+      "{.name} must have {{.strong {len}}} {{cli::qty(len)}} element{{?s}}."
+    )
+  } else if (!is.null(min_len) && length(x) < min_len) {
+    glue::glue("{.name} must have {{.strong {min_len}}} or more elements.")
+  } else if (!is.null(max_len) && length(x) > max_len) {
+    glue::glue("{.name} must have {{.strong {max_len}}} or less elements.")
   } else {
-    TRUE
+    glue::glue(
+      "{.name} does not meet the function requirements."
+    )
   }
 }
 
-assert_numeric <- checkmate::makeAssertionFunction(check_numeric)
+formals(message_numeric) <- c(formals_numeric, alist(.name = NULL))
 
-# This is temporary!
+constructor_numeric <- function() {
+  checkmate::assert_choice(.fun_type, c("check", "assert", "expect"))
 
+  obj_list <- env_get_list()
+  test <- do.call(test_numeric, obj_list)
+
+  message <- do.call(
+    message_numeric,
+    c(obj_list, list(.name = deparse(substitute(x))))
+  )
+
+  cli_fun <- ifelse(
+    .fun_type == "check",
+    cli::cli_alert_warning,
+    cli::cli_abort
+  )
+
+  if (isFALSE(test)) {
+    message |> cli_fun()
+
+    invisible(FALSE)
+  } else {
+    invisible(x)
+  }
+}
+
+formals(constructor_numeric) <- c(
+  formals_numeric, alist(.names = NULL, .fun_type = NULL)
+)
+
+check_numeric <- function() {
+  do.call(
+    constructor_numeric,
+    c(
+      env_get_list(),
+      list(.name = deparse(substitute(x)), .fun_type = "check")
+    )
+  )
+}
+
+formals(check_numeric) <- formals_numeric
+
+assert_numeric <- function() {
+  do.call(
+    constructor_numeric,
+    c(
+      env_get_list(),
+      list(.name = deparse(substitute(x)), .fun_type = "assert")
+    )
+  )
+}
+
+formals(assert_numeric) <- formals_numeric
+
+# See <https://testthat.r-lib.org/articles/custom-expectation.html>.
 expect_numeric <- checkmate::expect_numeric

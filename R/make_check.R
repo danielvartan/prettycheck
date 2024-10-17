@@ -1,3 +1,5 @@
+# Don't use this anymore. Use checkmate as engine. See `test_numeric()`.
+
 make_check <- function(type, family, arg_names = NULL) {
   assert_check_funs(family)
 

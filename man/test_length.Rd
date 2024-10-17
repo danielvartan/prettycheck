@@ -4,6 +4,7 @@
 \alias{test_length}
 \alias{check_length}
 \alias{assert_length}
+\alias{expect_length}
 \title{Check if an argument has a specific length}
 \usage{
 test_length(x, len = NULL, min_len = NULL, max_len = NULL, null_ok = FALSE)
@@ -11,6 +12,8 @@ test_length(x, len = NULL, min_len = NULL, max_len = NULL, null_ok = FALSE)
 check_length(x, len = NULL, min_len = NULL, max_len = NULL, null_ok = FALSE)
 
 assert_length(x, len = NULL, min_len = NULL, max_len = NULL, null_ok = FALSE)
+
+expect_length(x, len = NULL, min_len = NULL, max_len = NULL, null_ok = FALSE)
 }
 \arguments{
 \item{x}{An R object.}
@@ -30,12 +33,12 @@ if \code{x} can be \code{NULL} (default: \code{FALSE}).}
 \value{
 \itemize{
 \item \verb{test_*}: \code{TRUE} if it passes the test; \code{FALSE} otherwise.
-\item \verb{check_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-a warning message otherwise.
-\item \verb{assertion_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-an error message otherwise.
-\item \verb{expect_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-an error message otherwise.
+\item \verb{check_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; a warning message otherwise.
+\item \verb{assertion_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; an error message otherwise.
+\item \verb{expect_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; an error message otherwise.
 }
 }
 \description{

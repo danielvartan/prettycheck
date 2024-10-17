@@ -27,18 +27,18 @@ arguments to pick (default: \code{NULL}).}
 \value{
 \itemize{
 \item \verb{test_*}: \code{TRUE} if it passes the test; \code{FALSE} otherwise.
-\item \verb{check_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-a warning message otherwise.
-\item \verb{assertion_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-an error message otherwise.
-\item \verb{expect_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-an error message otherwise.
+\item \verb{check_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; a warning message otherwise.
+\item \verb{assertion_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; an error message otherwise.
+\item \verb{expect_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; an error message otherwise.
 }
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
-want to limit the number of arguments that can be assigne in a function.
+want to limit the number of arguments that can be assigned in a function.
 }
 \examples{
 x <- 1; y <- NULL

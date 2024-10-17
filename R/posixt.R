@@ -56,4 +56,7 @@ check_posixt <- function(
 
 assert_posixt <- checkmate::makeAssertionFunction(check_posixt)
 
-# expect_posixt
+expect_posixt <- checkmate::makeExpectationFunction(
+  check_posixt,
+  use.namespace = TRUE
+)

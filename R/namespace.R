@@ -23,4 +23,7 @@ check_namespace <- function(x, null_ok = FALSE, name = deparse(substitute(x))) {
 
 assert_namespace <- checkmate::makeAssertionFunction(check_namespace)
 
-# expect_namespace
+expect_namespace <- checkmate::makeExpectationFunction(
+  check_namespace,
+  use.namespace = TRUE
+)

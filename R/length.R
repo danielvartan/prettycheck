@@ -91,3 +91,7 @@ check_length <- make_check("check", "length", "x")
 #' @rdname test_length
 #' @export
 assert_length <- make_check("assert", "length", "x")
+
+#' @rdname test_length
+#' @export
+expect_length <- make_check("expect", "length", "x")

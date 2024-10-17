@@ -43,4 +43,7 @@ check_interval <- function(x, lower = - Inf, upper = Inf, any_missing = TRUE,
 
 assert_interval <- checkmate::makeAssertionFunction(check_interval)
 
-# expect_interval
+expect_interval <- checkmate::makeExpectationFunction(
+  check_interval,
+  use.namespace = TRUE
+)

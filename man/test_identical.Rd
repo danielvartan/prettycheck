@@ -25,12 +25,12 @@ perform. Valid values: \code{"value"}, \code{"length"}, and \code{"class"} (defa
 \value{
 \itemize{
 \item \verb{test_*}: \code{TRUE} if it passes the test; \code{FALSE} otherwise.
-\item \verb{check_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-a warning message otherwise.
-\item \verb{assertion_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-an error message otherwise.
-\item \verb{expect_*}: An \link[=invisible]{invisible} \code{TRUE} if it passes the test;
-an error message otherwise.
+\item \verb{check_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; a warning message otherwise.
+\item \verb{assertion_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; an error message otherwise.
+\item \verb{expect_*}: The same input as \link[=invisible]{invisible} if it passes the
+test; an error message otherwise.
 }
 }
 \description{

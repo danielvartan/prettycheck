@@ -1,9 +1,6 @@
-
-
 # prettycheck
 
 <!-- badges: start -->
-
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -15,7 +12,7 @@ coverage](https://codecov.io/gh/danielvartan/prettycheck/branch/main/graph/badge
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense.com/licenses/mit/)
 [![Contributor
-Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
 
 ## Overview
@@ -37,7 +34,7 @@ If you need a faster system for assertive programming, we recommend the
 [`checkmate`](https://mllg.github.io/checkmate/) package. Since
 `prettycheck` uses the same structure for checks, transitioning to
 `checkmate` is straightforward. You can also use both packages together
-seamlessly.
+seamlessly, since `prettycheck` also uses `checkmate` under the hood.
 
 ## Installation
 
@@ -51,13 +48,14 @@ remotes::install_github("danielvartan/prettycheck")
 ## Usage
 
 Like [`checkmate`](https://mllg.github.io/checkmate/), `prettycheck`
-includes four main types of functions: `test_*()`, `check_*()`,
+includes four family of functions: `test_*()`, `check_*()`,
 `assert_*()`, and `expect_*()`.
 
 The `test_*()` functions return a logical flag; the `check_*()`
-functions return a logical flag and throw a warning message if the
-condition is not met; and the`assert_*()` and `expect_*()` functions
-return a logical flag and throw an error if the condition is not met.
+functions throw a warning message if the condition is not met; and the
+`assert_*()` and `expect_*()` functions throw an error if the condition
+is not met. If the condition is met, `check_*()`, `assert_*()`, and
+`expect_*()` functions return the input object invisibly.
 
 Here are some of the functions available for now:
 
@@ -65,8 +63,8 @@ Here are some of the functions available for now:
   `check_identical()` `assert_identical()` `expect_identical()`: Check
   if multiple objects are identical.
 - [`test_length()`](https://danielvartan.github.io/prettycheck/reference/test_length.html)
-  `check_length()` `assert_length()`: Check if an argument has a
-  specific length.
+  `check_length()` `assert_length()` `expect_length()`: Check if an
+  argument has a specific length.
 - [`test_pick()`](https://danielvartan.github.io/prettycheck/reference/test_pick.html)
   `check_pick()` `assert_pick()`: Check how many arguments were picked.
 
@@ -92,5 +90,5 @@ license](https://opensource.org/license/mit/).
 Become an `prettycheck` supporter!
 
 Click [here](https://github.com/sponsors/danielvartan) to make a
-donation. Please indicate the `actverse` package in your donation
+donation. Please indicate the `prettycheck` package in your donation
 message.

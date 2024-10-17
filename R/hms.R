@@ -42,4 +42,7 @@ check_hms <- function(x, lower = - Inf, upper = Inf, any_missing = TRUE,
 
 assert_hms <- checkmate::makeAssertionFunction(check_hms)
 
-# expect_hms
+expect_hms <- checkmate::makeExpectationFunction(
+  check_hms,
+  use.namespace = TRUE
+)
