@@ -38,7 +38,7 @@ Assertive programming doesn’t have to be ugly. If ultra-fast checks are not yo
 `prettycheck` also adheres to the [tidyverse principles](https://tidyverse.tidyverse.org/articles/manifesto.html) and
 integrates well with the [tidyverse ecosystem](https://www.tidyverse.org/).
 
-If you need a faster system for assertive programming, we recommend the  [`checkmate`](https://mllg.github.io/checkmate/) package. Since `prettycheck` uses the same structure for checks, transitioning to `checkmate` is straightforward. You can also use both packages together seamlessly, since `prettycheck` also uses `checkmate` under the hood.
+If you need a faster system for assertive programming, we recommend the  [`checkmate`](https://mllg.github.io/checkmate/) package. Since `prettycheck` uses the same structure for checks, transitioning to `checkmate` is straightforward. You can also use both packages together seamlessly.
 
 ## Installation
 
@@ -54,7 +54,7 @@ remotes::install_github("danielvartan/prettycheck")
 
 Like [`checkmate`](https://mllg.github.io/checkmate/), `prettycheck` includes four family of functions: `test_*()`, `check_*()`, `assert_*()`, and `expect_*()`.
 
-The `test_*()` functions return a logical flag; the `check_*()` functions throw a warning message if the condition is not met; and the `assert_*()` and `expect_*()` functions throw an error if the condition is not met. If the condition is met, `check_*()`, `assert_*()`, and `expect_*()` functions return the input object invisibly.
+The `test_*()` functions return a logical flag; the `check_*()` functions throw a warning message as a string if the condition is not met; and the `assert_*()` and `expect_*()` functions throw an error if the condition is not met. If the condition is met, `check_*()` returns a logical flag; `assert_*()` and `expect_*()` functions return the input object invisibly.
 
 Here are some of the functions available for now:
 

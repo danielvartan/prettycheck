@@ -27,7 +27,7 @@ This package incorporates C code from the  [`checkmate`](https://mllg.github.io/
 Additionally, it is worth noting that the [MIT License](https://opensource.org/license/mit) is compatible with the BSD-3-Clause License.
 
 ```
-Copyright (c) 2023, Michel Lang
+Copyright (c) 2024, Michel Lang
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are

@@ -34,7 +34,7 @@ If you need a faster system for assertive programming, we recommend the
 [`checkmate`](https://mllg.github.io/checkmate/) package. Since
 `prettycheck` uses the same structure for checks, transitioning to
 `checkmate` is straightforward. You can also use both packages together
-seamlessly, since `prettycheck` also uses `checkmate` under the hood.
+seamlessly.
 
 ## Installation
 
@@ -52,19 +52,20 @@ includes four family of functions: `test_*()`, `check_*()`,
 `assert_*()`, and `expect_*()`.
 
 The `test_*()` functions return a logical flag; the `check_*()`
-functions throw a warning message if the condition is not met; and the
-`assert_*()` and `expect_*()` functions throw an error if the condition
-is not met. If the condition is met, `check_*()`, `assert_*()`, and
-`expect_*()` functions return the input object invisibly.
+functions throw a warning message as a string if the condition is not
+met; and the `assert_*()` and `expect_*()` functions throw an error if
+the condition is not met. If the condition is met, `check_*()` returns a
+logical flag; `assert_*()` and `expect_*()` functions return the input
+object invisibly.
 
 Here are some of the functions available for now:
 
 - [`test_identical()`](https://danielvartan.github.io/prettycheck/reference/test_identical.html)
-  `check_identical()` `assert_identical()` `expect_identical()`: Check
-  if multiple objects are identical.
+  `check_identical()` `assert_identical()`: Check if multiple objects
+  are identical.
 - [`test_length()`](https://danielvartan.github.io/prettycheck/reference/test_length.html)
-  `check_length()` `assert_length()` `expect_length()`: Check if an
-  argument has a specific length.
+  `check_length()` `assert_length()`: Check if an argument has a
+  specific length.
 - [`test_pick()`](https://danielvartan.github.io/prettycheck/reference/test_pick.html)
   `check_pick()` `assert_pick()`: Check how many arguments were picked.
 
