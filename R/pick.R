@@ -14,9 +14,12 @@
 #'   arguments to pick (default: `NULL`).
 #' @param max_pick (optional) an integer number indicating the maximum number of
 #'   arguments to pick (default: `NULL`).
+#' @param .names (optional) a [character][base::as.character()] vector
+#'   containing names for each object in `...` (default:
+#'   `prettycheck:::get_names(...)`). This argument is used internally and
+#'   should not be set by the user.
 #'
 #' @template return_a
-#' @include make_check.R
 #' @export
 #'
 #' @examples
@@ -25,25 +28,27 @@
 #' #> [1] TRUE # Expected
 #'
 #' x <- 1; y <- NULL; z <- NULL
-#' check_pick(x, y, z, pick = 2)
+#' check_pick(x, y, z, pick = 2) |> cli::cli_alert_warning()
 #' #> ! You must pick 2 of the x, y and z arguments. # Expected
 #'
 #' x <- 1; y <- NULL
-#' test_pick(x, y, min_pick = 1)
-#' #> [1] TRUE # Expected
+#' check_pick(x, y, min_pick = 2) |> cli::cli_alert_warning()
+#' #> ! You must assign the x and y arguments. # Expected
 #'
 #' x <- 1; y <- NULL; z <- NULL
-#' check_pick(x, y, z, min_pick = 2)
-#' #> ! You must pick 2 or more arguments. # Expected
+#' check_pick(x, y, z, min_pick = 2) |> cli::cli_alert_warning()
+#' #> ! You must pick 2 or more of the x, y and z arguments. # Expected
 #'
 #' x <- 1; y <- 1; z <- NULL
-#' test_pick(x, y, z, max_pick = 1)
-#' #> [1] FALSE # Expected
-#'
-#' x <- 1; y <- 1; z <- NULL
-#' check_pick(x, y, max_pick = 1)
-#' #> ! You must pick 1 or less arguments. # Expected
-test_pick <- function(..., pick = NULL, min_pick = NULL, max_pick = NULL) {
+#' check_pick(x, y, z, max_pick = 1) |> cli::cli_alert_warning()
+#' #> ! You must pick 1 or less of the x, y and z arguments. # Expected
+check_pick <- function(
+    ...,
+    pick = NULL,
+    min_pick = NULL,
+    max_pick = NULL,
+    .names = get_names(...)
+  ) {
   if (is.null(pick) && is.null(min_pick) && is.null(max_pick)) {
     names <- collapse_names(
       color = "red",
@@ -54,58 +59,15 @@ test_pick <- function(..., pick = NULL, min_pick = NULL, max_pick = NULL) {
     cli::cli_abort(glue::glue("{names} cannot all be {{.strong NULL}}."))
   }
 
-  if (isTRUE(test_first_check_family())) {
-    assert_integer_number(pick, lower = 1, null.ok = TRUE)
-    assert_integer_number(min_pick, lower = 1, null.ok = TRUE)
-    assert_integer_number(max_pick, lower = 1, null.ok = TRUE)
-    assert_length(list(...), min_len = 2)
+  checkmate::assert_int(pick, lower = 1, null.ok = TRUE)
+  checkmate::assert_int(min_pick, lower = 1, null.ok = TRUE)
+  checkmate::assert_int(max_pick, lower = 1, null.ok = TRUE)
+  assert_length(list(...), min_len = 2)
+  if (!is.null(pick)) assert_length(list(...), min_len = pick)
+  if (!is.null(min_pick)) assert_length(list(...), min_len = min_pick)
+  checkmate::assert_character(.names)
 
-    if (!is.null(pick)) assert_length(list(...), min_len = pick)
-    if (!is.null(min_pick)) assert_length(list(...), min_len = min_pick)
-  }
-
-  # R CMD Check variable bindings fix (see: https://bit.ly/3z24hbU)
-  # nolint start: object_usage_linter.
-  . <- NULL
-  # nolint end
-
-  not_null <-
-    list(...) |>
-    lapply(is.null) |>
-    unlist() %>%
-    which(x = . == FALSE) |>
-    length()
-
-  if (not_null == 0) {
-    FALSE
-  }  else if (!is.null(pick)) {
-    not_null == pick
-  } else if (!is.null(min_pick)) {
-    not_null >= min_pick
-  } else if (!is.null(max_pick)) {
-    not_null <= max_pick
-  } else {
-    else_error()
-  }
-}
-
-message_pick <- function(
-    ...,
-    pick = 1,
-    min_pick = NULL,
-    max_pick = NULL,
-    names
-  ) {
-  if (isTRUE(test_first_check_family())) {
-    assert_integer_number(pick, null.ok = TRUE)
-    assert_integer_number(min_pick, null.ok = TRUE)
-    assert_integer_number(max_pick, null.ok = TRUE)
-    assert_length(list(...), min_len = 2)
-    assert_length(list(...), min_len = pick)
-    assert_character(names)
-  }
-
-  names <- collapse_names(color = "red", names = names, last = "and")
+  names <- collapse_names(color = "red", names = .names, last = "and")
 
   null_test <-
     list(...) |>
@@ -118,26 +80,47 @@ message_pick <- function(
 
   if (isTRUE(all_null)) {
     glue::glue("{names} cannot all be {{.strong NULL}}.")
+  } else if (!is.null(pick) && length(.names) == pick ) {
+    glue::glue("You must assign the {names} arguments.")
   } else if (!is.null(pick) && length(not_null_values) < pick) {
     glue::glue("You must pick {{.strong {pick}}} of the {names} arguments.")
   } else if (!is.null(pick) && length(not_null_values) > pick) {
     glue::glue("Only {{.strong {pick}}} of {names} arguments can be assign.")
-  } else if (!is.null(min_pick)) {
+  } else if ((!is.null(min_pick) && !is.null(max_pick)) &&
+             (length(not_null_values) < min_pick ||
+             length(not_null_values) > max_pick)) {
     glue::glue(
-      "You must pick {{.strong {{cli::col_red(min_pick)}}} or more arguments."
+      "You must pick between {{.strong {{cli::col_red({min_pick})}}} ",
+      "and {{.strong {{cli::col_red({max_pick})}}} ",
+      "of the {names} arguments."
     )
-  } else if (!is.null(max_pick)) {
+  } else if (!is.null(min_pick) && length(.names) == min_pick) {
+    glue::glue("You must assign the {names} arguments.")
+  } else if (!is.null(min_pick) && length(not_null_values) < min_pick) {
     glue::glue(
-      "You must pick {{.strong {{cli::col_red(max_pick)}}} or less arguments."
+      "You must pick {{.strong {{cli::col_red({min_pick})}}} or more ",
+      "of the {names} arguments."
+    )
+  } else if (!is.null(max_pick) && length(not_null_values) > max_pick) {
+    glue::glue(
+      "You must pick {{.strong {{cli::col_red({max_pick})}}} or less ",
+      "of the {names} arguments."
     )
   } else {
-    else_error()
+    TRUE
   }
 }
-#' @rdname test_pick
-#' @export
-check_pick <- make_check("check", "pick")
 
-#' @rdname test_pick
+#' @rdname check_pick
 #' @export
-assert_pick <- make_check("assert", "pick")
+assert_pick <- make_assertion(check_pick)
+
+#' @rdname check_pick
+#' @export
+test_pick <- make_test(check_pick)
+
+# See <https://testthat.r-lib.org/articles/custom-expectation.html>.
+
+# #' @rdname check_pick
+# #' @export
+# expect_pick <- function() invisible(NULL)

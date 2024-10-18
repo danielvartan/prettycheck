@@ -49,7 +49,6 @@ LazyDataCompression: bzip2
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Collate: 
-    'mocks.R'
     'make_check.R'
     'a_collate.R'
     'access.R'
@@ -125,6 +124,7 @@ Collate:
     'temporal.R'
     'tibble.R'
     'true.R'
+    'utils-mocks.R'
     'utils.R'
     'vector.R'
     'whole_number.R'

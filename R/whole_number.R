@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 # Check checkmate::assert_count()
 
 test_whole_number <- function(

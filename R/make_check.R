@@ -1,89 +1,75 @@
-# Don't use this anymore. Use checkmate as engine. See `test_numeric()`.
+make_test <- function(check_fun) {
+  # R CMD Check variable bindings fix (see: https://bit.ly/3z24hbU)
+  # nolint start: object_usage_linter.
+  .names <- NULL
+  # nolint end
 
-make_check <- function(type, family, arg_names = NULL) {
-  assert_check_funs(family)
+  type <- extract_check_type(deparse(substitute(check_fun)))
 
-  base_formals <- formals(paste0("test_", family))
+  checkmate::assert_function(check_fun)
+  checkmate::assert_set_equal(type, "check")
 
-  dots <- "..." %in% names(base_formals)
-  sep <- ", "
+  out <- function() {
+    if ("..." %in% names(formals(check_fun))) {
+      # `.names` must be provided, since it is a dot-argument.
+      check <- do.call(
+        check_fun,
+        c(list(...), env_get_list(), list(.names = .names))
+      )
+    } else {
+      # `.names` must be provided, since it is a dot-argument.
+      check <- do.call(check_fun, c(env_get_list(), list(.names = .names)))
+    }
 
-  fun_exp <- str2expression(
-    glue::glue(
-      "
-      function({ifelse(isTRUE(dots), '...', '')}) {{
-        obj_list <- env_get_list()
+    if (isTRUE(check)) TRUE else FALSE
+  }
 
-        {ifelse(isTRUE(dots), 'dots_list <- list(...)', '')}
-
-        test <- do.call(
-          '{paste0('test_', family)}',
-          {ifelse(dots, 'c(dots_list, obj_list)', 'obj_list')}
-        )
-
-        if (isFALSE(test)) {{
-          do.call(
-            '{paste0('message_', family)}',
-            {
-              ifelse(
-                isTRUE(dots),
-                'c(dots_list, obj_list, list(names = get_names(...)))',
-                paste0(
-                  'c(',
-                    'obj_list, ',
-                    'list(names = ',
-                      'c(',
-                        paste0(
-                          'paste0(',
-                            'deparse(substitute(',
-                            arg_names,
-                            ')), ',
-                            'collapse = ',
-                            glue::double_quote(sep),
-                          ')'
-                        ),
-                      ')',
-                    ')',
-                  ')'
-                )
-              )
-            }
-          ) |>
-            {
-              ifelse(
-                type == 'assert' || type == 'expect',
-                'cli::cli_abort()',
-                'cli::cli_alert_warning()'
-              )
-            }
-        }} else {{
-          invisible(TRUE)
-        }}
-      }}
-      "
-    )
-  )
-
-  out <- eval(fun_exp)
-
-  formals(out) <- formals(get(paste0("test_", family)))
+  formals(out) <- formals(check_fun)
 
   out
 }
 
-assert_check_funs <- function(family) {
-  test_fun_name <- paste0("test_", family)
-  message_fun_name <- paste0("message_", family)
+make_assertion <- function(check_fun) {
+  # R CMD Check variable bindings fix (see: https://bit.ly/3z24hbU)
+  # nolint start: object_usage_linter.
+  .names <- x <- NULL
+  # nolint end
 
-  for (i in c(test_fun_name, message_fun_name)) {
-    if (!exists(i)) {
-      cli::cli_abort(
-        paste0(
-          "Function ",
-          "{.strong {cli::col_red(i)}} ",
-          "does not exist."
-        )
+  type <- extract_check_type(deparse(substitute(check_fun)))
+
+  checkmate::assert_function(check_fun)
+  checkmate::assert_set_equal(type, "check")
+
+  out <- function() {
+    if ("..." %in% names(formals(check_fun))) {
+      # `.names` must be provided, since it is a dot-argument.
+      check <- do.call(
+        check_fun,
+        c(list(...), env_get_list(), list(.names = .names))
       )
+
+      if (isTRUE(check)) invisible(list(...)) else cli::cli_abort(check)
+    } else {
+      # `.names` must be provided, since it is a dot-argument.
+      check <- do.call(check_fun, c(env_get_list(), list(.names = .names)))
+
+      if (isTRUE(check)) invisible(x) else cli::cli_abort(check)
     }
   }
+
+  formals(out) <- formals(check_fun)
+
+  out
+}
+
+extract_check_type <- function(check_name) {
+  check_name |>
+    stringr::str_extract("^(test|check|assert|expect)*(?=_)")
+}
+
+extract_check_family <- function(check_name) {
+  check_name |>
+    stringr::str_extract(
+      "(?<=test_).*|(?<=check_).*|(?<=assert_).*|(?<=expect_).*"
+    )
 }

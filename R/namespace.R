@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_namespace <- function(x) {
   assert_string(x)
   requireNamespace(x, quietly = TRUE)

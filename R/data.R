@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_data <- function(data, package) {
   assert_string(data)
   assert_string(package)

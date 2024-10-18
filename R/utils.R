@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 else_error <- function() {
   cli::cli_abort(
     paste0(
@@ -137,18 +134,6 @@ test_first_check_family <- function() {
       extract_check_family() |>
       magrittr::equals(check_family)
   }
-}
-
-extract_check_type <- function(check_name) {
-  check_name |>
-    stringr::str_extract("^(test|check|assert|expect)*(?=_)")
-}
-
-extract_check_family <- function(check_name) {
-  check_name |>
-    stringr::str_extract(
-      "(?<=test_).*|(?<=check_).*|(?<=assert_).*|(?<=expect_).*"
-    )
 }
 
 is_type_expected <- function(caller_call) {

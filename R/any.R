@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 any_builder <- function(x, fun, na_rm = TRUE) {
   assert_function(fun)
 

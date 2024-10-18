@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_empty <- function(x) length(x) == 1
 
 check_empty <- function(

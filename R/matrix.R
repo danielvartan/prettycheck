@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 # This is temporary!
 
 test_matrix <- checkmate::test_matrix

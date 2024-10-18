@@ -58,8 +58,8 @@ The `test_*()` functions return a logical flag; the `check_*()` functions throw 
 
 Here are some of the functions available for now:
 
-- [`test_identical()`](https://danielvartan.github.io/prettycheck/reference/test_identical.html) `check_identical()` `assert_identical()` `expect_identical()`: Check if multiple objects are identical.
-- [`test_length()`](https://danielvartan.github.io/prettycheck/reference/test_length.html) `check_length()` `assert_length()` `expect_length()`: Check if an argument has a specific length.
+- [`test_identical()`](https://danielvartan.github.io/prettycheck/reference/test_identical.html) `check_identical()` `assert_identical()`: Check if multiple objects are identical.
+- [`test_length()`](https://danielvartan.github.io/prettycheck/reference/test_length.html) `check_length()` `assert_length()`: Check if an argument has a specific length.
 - [`test_pick()`](https://danielvartan.github.io/prettycheck/reference/test_pick.html) `check_pick()` `assert_pick()`: Check how many arguments were picked.
 
 Click [here](https://danielvartan.github.io/prettycheck/) to see the full list of functions.

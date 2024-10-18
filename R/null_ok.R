@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_null_ok <- function(x, null_ok = FALSE) {
   assert_flag(null_ok)
 

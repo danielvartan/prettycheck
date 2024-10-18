@@ -1,10 +1,4 @@
-#' @include make_check.R
-#' @include mocks.R
-NULL
-
-test_internet <- has_internet
-
-# check_internet
+test_internet <- function(...) has_internet()
 
 assert_internet <- function() {
   if (isFALSE(has_internet())) {

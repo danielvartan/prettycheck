@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 any_finite <- function(x, na_rm = TRUE) any_builder(x, is.finite, na_rm)
 
 # test_finite

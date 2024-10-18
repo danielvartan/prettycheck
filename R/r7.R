@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 # test_r7
 # check_r7
 # assert_r7

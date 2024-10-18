@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 # This is temporary!
 
 test_path_for_output <- checkmate::test_path_for_output

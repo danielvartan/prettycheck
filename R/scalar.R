@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_scalar <- function(x) length(x) == 1
 
 check_scalar <- function(x, name = deparse(substitute(x))) {

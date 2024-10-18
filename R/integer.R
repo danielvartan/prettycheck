@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 # This is temporary!
 
 test_integer <- checkmate::test_integer

@@ -1,7 +1,7 @@
 editor: source
 
 project:
-  output-dir: "."
+  output_dir: "."
   render: [README.qmd]
   post-render: "R/.post-render.R"
 

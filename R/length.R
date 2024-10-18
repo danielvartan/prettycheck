@@ -8,90 +8,109 @@
 #'
 #' @param x An R object.
 #' @param len (optional) an integer number indicating the expected length of `x`
-#'   (default: `NULL`).
+#'   (default: `1`).
 #' @param min_len (optional) an integer number indicating the minimum length of
 #'   `x` (default: `NULL`).
 #' @param max_len (optional) an integer number indicating the maximum length of
 #'   `x` (default: `NULL`).
 #' @param null_ok (optional) a [`logical`][base::as.logical()] flag indicating
 #'   if `x` can be `NULL` (default: `FALSE`).
+#' @param .names (optional) a [character][base::as.character()] vector
+#'   containing names for each object in `...` (default:
+#'   `deparse(substitute(x))`). This argument is used internally and should
+#'   not be set by the user.
 #'
 #' @template return_a
 #' @include make_check.R
 #' @export
 #'
 #' @examples
-#' test_length(1, len = 1)
+#' x <- 1:2
+#'
+#' test_length(x, len = 2)
 #' #> [1] TRUE # Expected
-test_length <- function(
+#'
+#' check_length(x, len = 1) |> cli::cli_alert_warning()
+#' #> ! x must have 1 element. # Expected
+#'
+#' check_length(x, min_len = 3) |> cli::cli_alert_warning()
+#' #> ! x must have 3 or more elements. # Expected
+#'
+#' check_length(x, max_len = 1) |> cli::cli_alert_warning()
+#' #> ! x must have 1 or less elements. # Expected
+#'
+#' x <- 1
+#' check_length(x, min_len = 2, max_len = 3) |> cli::cli_alert_warning()
+#' #> ! x must have a length between 2 and 3. # Expected
+check_length <- function(
     x,
-    len = NULL,
-    min_len = NULL,
-    max_len = NULL,
-    null_ok = FALSE
-  ) {
-  if (isTRUE(test_first_check_family())) {
-    assert_integer_number(len, lower = 0, null.ok = TRUE)
-    assert_integer_number(min_len, lower = 0, null.ok = TRUE)
-    assert_integer_number(max_len, lower = 0, null.ok = TRUE)
-    assert_pick(len, c(min_len, max_len), pick = 1)
-    assert_null_ok(x, null_ok)
-  }
-
-  if (!is.null(len)) {
-    length(x) == len
-  } else if (!is.null(min_len) && is.null(max_len)) {
-    length(x) >= min_len
-  } else if (is.null(min_len) && !is.null(max_len)) {
-    length(x) <= max_len
-  } else if (!is.null(min_len) && !is.null(max_len)) {
-    length(x) >= min_len && length(x) <= max_len
-  } else {
-    else_error()
-  }
-}
-
-message_length <- function(
-    x,
-    len = NULL,
+    len = 1,
     min_len = NULL,
     max_len = NULL,
     null_ok = FALSE,
-    names
+    .names = deparse(substitute(x))
   ) {
-  if (isTRUE(test_first_check_family())) {
-    assert_integer_number(len, lower = 0, null.ok = TRUE)
-    assert_integer_number(min_len, lower = 0, null.ok = TRUE)
-    assert_integer_number(max_len, lower = 0, null.ok = TRUE)
-    assert_pick(len, c(min_len, max_len), pick = 1)
-    assert_string(names)
+  checkmate::assert_string(.names)
+
+  if (is.null(len) && is.null(min_len) && is.null(max_len)) {
+    names <- collapse_names(
+      color = "red",
+      names = c("len", "min_len", "max_len"),
+      last = "and"
+    )
+
+    cli::cli_abort("names cannot all be {.strong NULL}.")
   }
 
-  names <- collapse_names(color = "red", names = names)
+  checkmate::assert_int(len, lower = 1, null.ok = TRUE)
+  checkmate::assert_int(min_len, lower = 1, null.ok = TRUE)
+  checkmate::assert_int(max_len, lower = 1, null.ok = TRUE)
 
-  if (!is.null(max_len)) if (max_len == 0) len <- 0
 
-  if (!is.null(len)) {
-    glue::glue(
-      "{names} must have {{.strong {len}}} {{cli::qty(len)}} element{{?s}}."
+  if (!is.null(min_len) || !is.null(max_len)) len <- NULL
+
+  if (!is.null(min_len) && !is.null(max_len) && min_len > max_len) {
+    cli::cli_abort(
+      paste0(
+        "{cli::col_red('min_len')} cannot be less than {.strong 'max_len'}."
+      )
     )
+  }
+
+  names <- collapse_names(.names, color = "red")
+
+  if (isFALSE(null_ok) && is.null(x)) {
+    glue::glue("{names} cannot be {{.strong NULL}}.")
+  } else if (!is.null(len) && !length(x) == len) {
+    glue::glue(
+      "{names} must have {{.strong {len}}} {{cli::qty({len})}} element{{?s}}."
+    )
+  } else if ((!is.null(min_len) && !is.null(max_len))) {
+    if (length(x) < min_len || length(x) > max_len) {
+      glue::glue(
+        "{names} must have a length between {{.strong {min_len}}} ",
+        "and {{.strong {max_len}}}."
+      )
+    }
   } else if (!is.null(min_len) && length(x) < min_len) {
     glue::glue("{names} must have {{.strong {min_len}}} or more elements.")
   } else if (!is.null(max_len) && length(x) > max_len) {
     glue::glue("{names} must have {{.strong {max_len}}} or less elements.")
   } else {
-    else_error()
+    TRUE
   }
 }
 
-#' @rdname test_length
+#' @rdname check_length
 #' @export
-check_length <- make_check("check", "length", "x")
+assert_length <- make_assertion(check_length)
 
-#' @rdname test_length
+#' @rdname check_length
 #' @export
-assert_length <- make_check("assert", "length", "x")
+test_length <- make_test(check_length)
 
-#' @rdname test_length
-#' @export
-expect_length <- make_check("expect", "length", "x")
+# See <https://testthat.r-lib.org/articles/custom-expectation.html>.
+
+# #' @rdname check_length
+# #' @export
+# expect_length <- function() invisible(NULL)

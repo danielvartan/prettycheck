@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_hms <- function(x, lower = - Inf, upper = Inf, any_missing = TRUE,
                      null_ok = FALSE) {
   assert_flag(any_missing)

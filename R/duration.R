@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_duration <- function(x, lower = - Inf, upper = Inf, any.missing = TRUE,
                           null_ok = FALSE) {
   assert_flag(any.missing)

@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_temporal <- function(x, any_missing = TRUE, null_ok = FALSE, rm = NULL) {
   assert_flag(any_missing)
   assert_flag(null_ok)

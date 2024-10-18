@@ -1,6 +1,3 @@
-#' @include make_check.R
-NULL
-
 test_less_or_equal_than <- function(x, y, null_ok = FALSE) {
   if (isTRUE(test_first_check_family())) {
     assert_numeric(x)
