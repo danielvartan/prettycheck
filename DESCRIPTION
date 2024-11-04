@@ -59,6 +59,7 @@ Collate:
     'character.R'
     'choice.R'
     'class.R'
+    'color.R'
     'complex.R'
     'count.R'
     'data.R'
