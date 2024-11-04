@@ -1,25 +1,3 @@
----
-editor: source
-output-dir: "."
-post-render: "R/.post-render.R"
-format: gfm
----
-
-```{r}
-#| label: setup
-#| include: false
-
-library(beepr)
-library(cffr)
-library(codemetar)
-library(groomr) # https://github.com/danielvartan/groomr
-library(here)
-library(prettycheck)
-library(readr)
-library(rutils) # https://github.com/danielvartan/rutils
-library(stringr)
-```
-
 # prettycheck
 
 <!-- badges: start -->
