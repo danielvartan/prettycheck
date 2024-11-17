@@ -79,7 +79,9 @@ check_length <- function(
 
   names <- collapse_names(.names, color = "red")
 
-  if (isFALSE(null_ok) && is.null(x)) {
+  if (isTRUE(null_ok) && is.null(x)) {
+    TRUE
+  } else if (isFALSE(null_ok) && is.null(x)) {
     glue::glue("{names} cannot be {{.strong NULL}}.")
   } else if (!is.null(len) && !length(x) == len) {
     glue::glue(

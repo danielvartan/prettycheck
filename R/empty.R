@@ -1,4 +1,4 @@
-test_empty <- function(x) length(x) == 1
+test_empty <- function(x) length(x) == 0
 
 check_empty <- function(
     x,
