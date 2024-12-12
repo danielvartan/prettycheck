@@ -149,6 +149,33 @@ is_type_expected <- function(caller_call) {
   }
 }
 
+# Credits: B. Christian Kamgang
+# Source: Adapted from
+# <https://stackoverflow.com/questions/66329835/
+# how-to-get-all-parameters-passed-into-a-function-with-their-values>
+
+grab_fun_par <- function() {
+  args_names <- ls(envir = parent.frame(), all.names = TRUE, sorted = FALSE)
+
+  if ("..." %in% args_names) {
+    dots <- eval(quote(list(...)), envir = parent.frame())
+  } else {
+    dots = list()
+  }
+
+  args_names <- sapply(setdiff(args_names, "..."), as.name)
+
+  if(length(args_names)) {
+    not_dots <- lapply(args_names, eval, envir = parent.frame()) 
+  } else {
+    not_dots <- list()
+  }
+
+  out <- c(not_dots, dots)
+  
+  out[names(out) != ""] 
+}  
+
 env_get_list <- function(env = parent.frame()) {
   # R CMD Check variable bindings fix (see: https://bit.ly/3z24hbU)
   # nolint start: object_usage_linter.
