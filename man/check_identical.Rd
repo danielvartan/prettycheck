@@ -19,19 +19,16 @@ test_identical(..., type = "value", .names = get_names(...))
 perform. Valid values: \code{"value"}, \code{"length"}, and \code{"class"} (default:
 \code{"value"}).}
 
-\item{.names}{(optional) a \link[base:character]{character} vector
-containing names for each object in \code{...} (default:
-\code{prettycheck:::get_names(...)}).  This argument is used internally and
-should not be set by the user.}
+\item{.names}{(Optional) A \code{\link[base:character]{character}} vector specifying
+the names of the objects being tested. This argument is used internally
+and should not be set by the user.}
 }
 \value{
 \itemize{
 \item \verb{test_*}: \code{TRUE} if it passes the test; \code{FALSE} otherwise.
 \item \verb{check_*}: \code{TRUE} if it passes the test; a string with a message otherwise.
-\item \verb{assertion_*}: The same input as \link[=invisible]{invisible} if it passes the
-test; an error message otherwise.
-\item \verb{expect_*}: The same input as \link[=invisible]{invisible} if it passes the
-test; an error message otherwise.
+\item \verb{assertion_*}: The same input (as \link[base:invisible]{invisible}) if it
+passes the test; an error message otherwise.
 }
 }
 \description{

@@ -1,15 +1,20 @@
+# (2025-03-02) You may have to install the development version of `bslib` to
+# use `_brands.yml`.
+
 url: https://danielvartan.github.io/prettycheck/
 
 template:
+  bslib:
+    version: 5
+  math-rendering: mathjax
+  light-switch: true
   params:
-    bootswatch: cosmo
-    mathjax: true
     noindex: false
 
 navbar:
   structure:
     left:
-    - home
+    - homedevtools::install()
     - intro
     - reference
     - articles
@@ -30,17 +35,33 @@ reference:
     `check_*()`, `assert_*()`, and `expect_*()`.
 
     The `test_*()` functions return a logical flag; the `check_*()` functions
-    return a logical flag and throw a warning message if the condition is not
-    met; and the`assert_*()` and `expect_*()` functions return a logical flag
-    and throw an error if the condition is not met.
+    return `TRUE` or throw a warning message as a string if the condition is
+    not met; and the `assert_*()` and `expect_*()` functions return the input
+    object or throw an error if the condition is not met.
   contents:
-  - test_identical
-  - test_length
-  - test_pick
+  - assert_color
+  - assert_color_options
+  - check_data
+  - check_duration
+  - check_empty
+  - check_internet
+  - check_hms
+  - check_identical
+  - check_interactive
+  - check_interval
+  - check_length
+  - check_not_empty
+  - check_namespace
+  - check_numeric
+  - check_period
+  - check_pick
+  - check_posixt
+  - check_scalar
+  - check_temporal
 
 authors:
   Daniel Vartanian:
-    href: https://github.com/danielvartan
+    href: https://github.com/danielvartan/
 
 development:
   mode: auto

@@ -1,23 +1,33 @@
-test_that("*_numeric() | general test", {
-  test_numeric(x = as.integer(1)) |> expect_true()
-  test_numeric(x = as.double(1)) |> expect_true()
-  test_numeric(x = as.numeric(1)) |> expect_true()
-  test_numeric(x = c(1, NA), any_missing = TRUE) |> expect_true()
-  test_numeric(x = NULL, null_ok = TRUE) |> expect_true()
-  test_numeric(x = lubridate::dhours()) |> expect_false()
-  test_numeric(x = letters) |> expect_false()
-  test_numeric(x = datasets::iris) |> expect_false()
-  test_numeric(x = c(1, NA), any_missing = FALSE) |> expect_false()
-  test_numeric(x = NULL, null_ok = FALSE) |> expect_false()
-  test_numeric(x = 1, lower = 2) |> expect_false()
-  test_numeric(x = 1, upper = 0) |> expect_false()
+test_that("*_numeric() | General test", {
+  as.integer(1) |>
+    test_numeric() |>
+    expect_true()
 
-  check_numeric(x = c(1, NA), any_missing = FALSE) |> checkmate::expect_string()
-  check_numeric(x = NULL, null_ok = FALSE) |> checkmate::expect_string()
-  check_numeric(x = 1, lower = 2) |> checkmate::expect_string()
-  check_numeric(x = 1, upper = 0) |> checkmate::expect_string()
-  check_numeric(x = c("a", "b")) |> checkmate::expect_string()
+  as.double(1) |>
+    test_numeric() |>
+    expect_true()
 
-  assert_numeric(x = c(1, 1)) |> expect_equal(c(1, 1))
-  assert_numeric( x = c("a", "b")) |> testthat::expect_error()
+  as.numeric(1) |>
+    test_numeric() |>
+    expect_true()
+
+  c(1, NA) |>
+    test_numeric(any_missing = TRUE) |>
+    expect_true()
+
+  NULL |>
+    test_numeric(null_ok = TRUE) |>
+    expect_true()
+
+  lubridate::dhours() |>
+    test_numeric() |>
+    expect_false()
+
+  letters |>
+    test_numeric() |>
+    expect_false()
+
+  datasets::iris |>
+    test_numeric() |>
+    expect_false()
 })

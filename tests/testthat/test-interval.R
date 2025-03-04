@@ -1,52 +1,130 @@
-test_that("*_interval() | general test", {
+test_that("*_interval() | General test", {
   int <- lubridate::interval(
-    as.POSIXct("2020-01-01 00:00:00"), as.POSIXct("2020-01-02 00:00:00"))
-  int_lower <- lubridate::interval(
-    as.POSIXct("2020-01-01 01:00:00"), as.POSIXct("2020-01-02 00:00:00"))
-  int_upper <- lubridate::interval(
-    as.POSIXct("2020-01-01 00:00:00"), as.POSIXct("2020-01-02 01:00:00"))
-
-  expect_true(test_interval(int))
-  expect_true(test_interval(c(int, lubridate::as.interval(NA)),
-                            any_missing = TRUE))
-  expect_true(test_interval(NULL, null_ok = TRUE))
-  expect_true(test_interval(int, lower = int_lower))
-  expect_true(test_interval(int, upper = int_upper))
-  expect_false(test_interval("a"))
-  expect_false(test_interval(1))
-  expect_false(test_interval(lubridate::hours()))
-  expect_false(test_interval(hms::hms(1)))
-  expect_false(test_interval(datasets::iris))
-  expect_false(test_interval(c(int, NA), any_missing = FALSE))
-  expect_false(test_interval(NULL, null_ok = FALSE))
-  expect_false(test_interval(int, lower = int_upper))
-  expect_false(test_interval(int, upper = int_lower))
-
-  checkmate::expect_string(
-    check_interval(c(1, NA), any_missing = FALSE),
-    pattern = "'c\\(1, NA\\)' cannot have missing values"
+    as.POSIXct("2020-01-01 00:00:00"),
+    as.POSIXct("2020-01-02 00:00:00")
   )
-  checkmate::expect_string(check_interval(NULL, null_ok = FALSE),
-                           pattern = "'NULL' cannot be 'NULL'")
-  checkmate::expect_string(check_interval(int, lower = int_upper),
-                           pattern = "Element 1 is not >= ")
-  checkmate::expect_string(check_interval(int, upper = int_lower),
-                           pattern = "Element 1 is not <= ")
-  checkmate::expect_string(check_interval(c(1, 1)),
-                           pattern = "Must be of type 'Interval'")
-  expect_true(check_interval(c(int, int_lower)))
-  expect_true(check_interval(NULL, null_ok = TRUE))
 
-  expect_equal(assert_interval(c(int, int_lower)), c(int, int_lower))
-  expect_error(assert_interval(c(1, 1)), "Assertion on 'c\\(1, 1\\)' failed")
+  int_lower <- lubridate::interval(
+    as.POSIXct("2020-01-01 01:00:00"),
+    as.POSIXct("2020-01-02 00:00:00")
+  )
+
+  int_upper <- lubridate::interval(
+    as.POSIXct("2020-01-01 00:00:00"),
+    as.POSIXct("2020-01-02 01:00:00")
+  )
+
+  int |>
+    test_interval() |>
+    expect_true()
+
+  c(int, lubridate::as.interval(NA)) |>
+    test_interval(any_missing = TRUE) |>
+    expect_true()
+
+  NULL |>
+    test_interval(null_ok = TRUE) |>
+    expect_true()
+
+  int |>
+    test_interval(lower = int_lower) |>
+    expect_true()
+
+  int |>
+    test_interval(upper = int_upper) |>
+    expect_true()
+
+  "a" |>
+    test_interval() |>
+    expect_false()
+
+  1 |>
+    test_interval() |>
+    expect_false()
+
+  lubridate::hours() |>
+    test_interval() |>
+    expect_false()
+
+  hms::hms(1) |>
+    test_interval() |>
+    expect_false()
+
+  datasets::iris |>
+    test_interval() |>
+    expect_false()
+
+  c(int, NA) |>
+    test_interval(any_missing = FALSE) |>
+    expect_false()
+
+  NULL |>
+    test_interval(null_ok = FALSE) |>
+    expect_false()
+
+  int |>
+    test_interval(lower = int_upper) |>
+    expect_false()
+
+  int |>
+    test_interval(upper = int_lower) |>
+    expect_false()
+
+  c(1, NA) |>
+    check_interval(any_missing = FALSE) |>
+    checkmate::expect_string(
+      pattern = "'c\\(1, NA\\)' cannot have missing values"
+    )
+
+  NULL |>
+    check_interval(null_ok = FALSE) |>
+    checkmate::expect_string(pattern = "'NULL' cannot be 'NULL'")
+
+  int |>
+    check_interval(lower = int_upper) |>
+    checkmate::expect_string(pattern = "Element 1 is not >= ")
+
+  int |>
+    check_interval(upper = int_lower) |>
+    checkmate::expect_string(pattern = "Element 1 is not <= ")
+
+  c(1, 1) |>
+    check_interval() |>
+    checkmate::expect_string(pattern = "Must be of type 'Interval'")
+
+  c(int, int_lower) |>
+    check_interval() |>
+    expect_true()
+
+  NULL |>
+    check_interval(null_ok = TRUE) |>
+    expect_true()
+
+  c(int, int_lower) |>
+    assert_interval() |>
+    expect_equal(c(int, int_lower))
+
+  c(1, 1) |>
+    assert_interval() |>
+    expect_error("Assertion on 'c\\(1, 1\\)' failed")
 })
 
-test_that("*_interval() | error test", {
+test_that("*_interval() | Error test", {
   # checkmate::assert_flag(any_missing)
-  expect_error(test_interval(lubridate::as_datetime(1), any_missing = 1))
-  expect_error(check_interval(lubridate::as_datetime(1), any_missing = 1))
+  lubridate::as_datetime(1) |>
+    test_interval(any_missing = 1) |>
+    expect_error()
+
+  lubridate::as_datetime(1) |>
+    check_interval(any_missing = 1) |>
+    expect_error()
 
   # checkmate::assert_flag(null_ok)
-  expect_error(test_interval(lubridate::as_datetime(1), null_ok = 1))
-  expect_error(check_interval(lubridate::as_datetime(1), null_ok = 1))
+  lubridate::as_datetime(1) |>
+    test_interval(null_ok = 1) |>
+    expect_error()
+
+  lubridate::as_datetime(1) |>
+    check_interval(null_ok = 1) |>
+    expect_error()
 })

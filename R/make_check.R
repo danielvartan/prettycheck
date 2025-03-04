@@ -12,7 +12,7 @@ make_test <- function(check_fun) {
   out <- function() {
     if ("..." %in% names(formals(check_fun))) {
       # `.names` must be provided, since it is a dot-argument.
-      check <- do.call(
+      check <- do.call( #nolint
         check_fun,
         c(list(...), env_get_list(), list(.names = .names))
       )
@@ -43,12 +43,12 @@ make_assertion <- function(check_fun) {
   out <- function() {
     if ("..." %in% names(formals(check_fun))) {
       # `.names` must be provided, since it is a dot-argument.
-      check <- do.call(
+      check <- do.call( #nolint
         check_fun,
         c(list(...), env_get_list(), list(.names = .names))
       )
 
-      if (isTRUE(check)) invisible(list(...)) else cli::cli_abort(check)
+      if (isTRUE(check)) invisible(list(...)) else cli::cli_abort(check) #nolint
     } else {
       # `.names` must be provided, since it is a dot-argument.
       check <- do.call(check_fun, c(env_get_list(), list(.names = .names)))
@@ -62,11 +62,13 @@ make_assertion <- function(check_fun) {
   out
 }
 
+# Don't move!
 extract_check_type <- function(check_name) {
   check_name |>
     stringr::str_extract("^(test|check|assert|expect)*(?=_)")
 }
 
+# Don't move!
 extract_check_family <- function(check_name) {
   check_name |>
     stringr::str_extract(

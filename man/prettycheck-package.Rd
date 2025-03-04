@@ -11,6 +11,7 @@ Provides a set of functions that produce pretty and informative error messages.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://danielvartan.github.io/prettycheck/}
   \item \url{https://github.com/danielvartan/prettycheck/}
   \item Report bugs at \url{https://github.com/danielvartan/prettycheck/issues/}
 }

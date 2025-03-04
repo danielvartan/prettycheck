@@ -1,79 +1,105 @@
-test_that("*_hms() | general test", {
-  expect_true(test_hms(x = hms::hms(1)))
-  expect_true(test_hms(x = c(hms::hms(1), NA), any_missing = TRUE))
-  expect_true(test_hms(x = NULL, null_ok = TRUE))
-  expect_false(test_hms(x = "a"))
-  expect_false(test_hms(x = 1))
-  expect_false(test_hms(x = lubridate::hours()))
-  expect_false(test_hms(x = lubridate::dhours()))
-  expect_false(test_hms(x = datasets::iris))
+test_that("*_hms() | General test", {
+  hms::hms(1) |>
+    test_hms() |>
+    expect_true()
 
-  expect_false(test_hms(
-    x = c(lubridate::dhours(1), NA), any_missing = FALSE)
-  )
+  c(hms::hms(1), NA) |>
+    test_hms(any_missing = TRUE) |>
+    expect_true()
 
-  expect_false(test_hms(x = NULL, null_ok = FALSE))
+  NULL |>
+    test_hms(null_ok = TRUE) |>
+    expect_true()
 
-  expect_false(test_hms(
-    x = hms::hms(1), lower = hms::hms(2))
-  )
+  "a" |>
+    test_hms() |>
+    expect_false()
 
-  expect_false(test_hms(
-    x = hms::hms(1), upper = hms::hms(0))
-  )
+  1 |>
+    test_hms() |>
+    expect_false()
 
-  checkmate::expect_string(check_hms(
-    x = c(1, NA), any_missing = FALSE
-  ),
-  "'c\\(1, NA\\)' cannot have missing values"
-  )
+  lubridate::hours() |>
+    test_hms() |>
+    expect_false()
 
-  checkmate::expect_string(check_hms(
-    x = NULL, null_ok = FALSE
-  ),
-  "'NULL' cannot be 'NULL'"
-  )
+  lubridate::dhours() |>
+    test_hms() |>
+    expect_false()
 
-  checkmate::expect_string(check_hms(
-    x = hms::hms(1), lower = hms::hms(2)
-  ),
-  "Element 1 is not <= "
-  )
+  datasets::iris |>
+    test_hms() |>
+    expect_false()
 
-  checkmate::expect_string(check_hms(
-    x = hms::hms(1), upper = hms::hms(0)
-  ),
-  "Element 1 is not >= "
-  )
+  c(lubridate::dhours(1), NA) |>
+    test_hms(any_missing = FALSE) |>
+    expect_false()
 
-  checkmate::expect_string(check_hms(
-    x = c(1, 1)
-  ),
-  "Must be of type 'hms', not 'numeric'"
-  )
+  NULL |>
+    test_hms(null_ok = FALSE) |>
+    expect_false()
 
-  expect_true(check_hms(x = c(hms::hms(1), hms::hms(1))))
-  expect_true(check_hms(x = NULL, null_ok = TRUE))
+  hms::hms(1) |>
+    test_hms(lower = hms::hms(2)) |>
+    expect_false()
 
-  expect_equal(assert_hms(
-    x = c(hms::hms(1), hms::hms(1))
-  ),
-  c(hms::hms(1), hms::hms(1))
-  )
+  hms::hms(1) |>
+    test_hms(upper = hms::hms(0)) |>
+    expect_false()
 
-  expect_error(assert_hms(
-    x = c(1, 1)
-  ),
-  "Assertion on 'c\\(1, 1\\)' failed"
-  )
+  c(1, NA) |>
+    check_hms(any_missing = FALSE) |>
+    checkmate::expect_string("'c\\(1, NA\\)' cannot have missing values")
+
+  NULL |>
+    check_hms(null_ok = FALSE) |>
+    checkmate::expect_string("'NULL' cannot be 'NULL'")
+
+  hms::hms(1) |>
+    check_hms(lower = hms::hms(2)) |>
+    checkmate::expect_string("Element 1 is not <= ")
+
+  hms::hms(1) |>
+    check_hms(upper = hms::hms(0)) |>
+    checkmate::expect_string("Element 1 is not >= ")
+
+  c(1, 1) |>
+    check_hms() |>
+    checkmate::expect_string("Must be of type 'hms', not 'numeric'")
+
+  c(hms::hms(1), hms::hms(1)) |>
+    check_hms() |>
+    expect_true()
+
+  NULL |>
+    check_hms(null_ok = TRUE) |>
+    expect_true()
+
+  c(hms::hms(1), hms::hms(1)) |>
+    assert_hms() |>
+    expect_equal(c(hms::hms(1), hms::hms(1)))
+
+  c(1, 1) |>
+    assert_hms() |>
+    expect_error("Assertion on 'c\\(1, 1\\)' failed")
 })
 
-test_that("*_hms() | error test", {
+test_that("*_hms() | Error test", {
   # checkmate::assert_flag(any_missing)
-  expect_error(test_hms(hms::hms(1), any_missing = 1))
-  expect_error(check_hms(hms::hms(1), any_missing = 1))
+  hms::hms(1) |>
+    test_hms(any_missing = 1) |>
+    expect_error()
+
+  hms::hms(1) |>
+    check_hms(any_missing = 1) |>
+    expect_error()
 
   # checkmate::assert_flag(null_ok)
-  expect_error(test_hms(hms::hms(1), null_ok = 1))
-  expect_error(check_hms(hms::hms(1), null_ok = 1))
+  hms::hms(1) |>
+    test_hms(null_ok = 1) |>
+    expect_error()
+
+  hms::hms(1) |>
+    check_hms(null_ok = 1) |>
+    expect_error()
 })

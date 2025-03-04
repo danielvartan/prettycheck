@@ -12,3 +12,8 @@ test_count <- checkmate::test_count
 check_count <- checkmate::check_count
 assert_count <- checkmate::assert_count
 expect_count <- checkmate::expect_count
+
+test_whole_number <- checkmate::test_count
+check_whole_number <- checkmate::check_count
+assert_whole_number <- checkmate::assert_count
+expect_whole_number <- checkmate::expect_count

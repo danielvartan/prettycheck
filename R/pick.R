@@ -7,19 +7,16 @@
 # `*_pick()` check how many arguments the user picked. It can be used when you
 #' want to limit the number of arguments that can be assigned in a function.
 #'
-#' @param ... Objects to compare.
-#' @param pick (optional) an integer number indicating the expected number of
+#' @param pick (Optional) an integer number indicating the expected number of
 #'   arguments to pick (default: `NULL`) (default: `1`).
-#' @param min_pick (optional) an integer number indicating the minimum number of
+#' @param min_pick (Optional) an integer number indicating the minimum number of
 #'   arguments to pick (default: `NULL`).
-#' @param max_pick (optional) an integer number indicating the maximum number of
+#' @param max_pick (Optional) an integer number indicating the maximum number of
 #'   arguments to pick (default: `NULL`).
-#' @param .names (optional) a [character][base::as.character()] vector
-#'   containing names for each object in `...` (default:
-#'   `prettycheck:::get_names(...)`). This argument is used internally and
-#'   should not be set by the user.
 #'
-#' @template return_a
+#' @template param-ellipsis
+#' @template param-.names
+#' @template return-default-minus-e
 #' @export
 #'
 #' @examples
@@ -42,8 +39,8 @@
 #' x <- 1; y <- 1; z <- NULL
 #' check_pick(x, y, z, max_pick = 1) |> cli::cli_alert_warning()
 #' #> ! You must pick 1 or less of the x, y and z arguments. # Expected
-check_pick <- function(
-    ...,
+check_pick <- function( #nolint
+    ..., #nolint
     pick = NULL,
     min_pick = NULL,
     max_pick = NULL,
@@ -75,20 +72,20 @@ check_pick <- function(
     unlist()
 
   all_null <- null_test |> all(na.rm = TRUE)
-  null_values <- list(...)[null_test]
+  null_values <- list(...)[null_test] #nolint
   not_null_values <- list(...)[!null_test]
 
   if (isTRUE(all_null)) {
     glue::glue("{names} cannot all be {{.strong NULL}}.")
-  } else if (!is.null(pick) && length(.names) == pick ) {
+  } else if (!is.null(pick) && length(.names) == pick) {
     glue::glue("You must assign the {names} arguments.")
   } else if (!is.null(pick) && length(not_null_values) < pick) {
     glue::glue("You must pick {{.strong {pick}}} of the {names} arguments.")
   } else if (!is.null(pick) && length(not_null_values) > pick) {
     glue::glue("Only {{.strong {pick}}} of {names} arguments can be assign.")
   } else if ((!is.null(min_pick) && !is.null(max_pick)) &&
-             (length(not_null_values) < min_pick ||
-             length(not_null_values) > max_pick)) {
+             (length(not_null_values) < min_pick || #nolint
+             length(not_null_values) > max_pick)) { #nolint
     glue::glue(
       "You must pick between {{.strong {{cli::col_red({min_pick})}}} ",
       "and {{.strong {{cli::col_red({max_pick})}}} ",

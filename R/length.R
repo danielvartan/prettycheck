@@ -6,21 +6,14 @@
 #'
 # `*_length()` check if an argument has a specific, minimum, or maximum length.
 #'
-#' @param x An R object.
 #' @param len (optional) an integer number indicating the expected length of `x`
 #'   (default: `1`).
-#' @param min_len (optional) an integer number indicating the minimum length of
-#'   `x` (default: `NULL`).
-#' @param max_len (optional) an integer number indicating the maximum length of
-#'   `x` (default: `NULL`).
-#' @param null_ok (optional) a [`logical`][base::as.logical()] flag indicating
-#'   if `x` can be `NULL` (default: `FALSE`).
-#' @param .names (optional) a [character][base::as.character()] vector
-#'   containing names for each object in `...` (default:
-#'   `deparse(substitute(x))`). This argument is used internally and should
-#'   not be set by the user.
 #'
-#' @template return_a
+#' @template param-x
+#' @template param-max-min-len
+#' @template param-null_ok
+#' @template param-.names
+#' @template return-default-minus-e
 #' @include make_check.R
 #' @export
 #'
@@ -42,15 +35,16 @@
 #' x <- 1
 #' check_length(x, min_len = 2, max_len = 3) |> cli::cli_alert_warning()
 #' #> ! x must have a length between 2 and 3. # Expected
-check_length <- function(
-    x,
+check_length <- function( #nolint
+    x, #nolint
     len = 1,
     min_len = NULL,
     max_len = NULL,
     null_ok = FALSE,
     .names = deparse(substitute(x))
   ) {
-  checkmate::assert_string(.names)
+  assert_flag(null_ok)
+  assert_string(.names)
 
   if (is.null(len) && is.null(min_len) && is.null(max_len)) {
     names <- collapse_names(
@@ -62,9 +56,9 @@ check_length <- function(
     cli::cli_abort("names cannot all be {.strong NULL}.")
   }
 
-  checkmate::assert_int(len, lower = 1, null.ok = TRUE)
-  checkmate::assert_int(min_len, lower = 1, null.ok = TRUE)
-  checkmate::assert_int(max_len, lower = 1, null.ok = TRUE)
+  assert_int(len, lower = 0, null.ok = TRUE)
+  assert_int(min_len, lower = 1, null.ok = TRUE)
+  assert_int(max_len, lower = 1, null.ok = TRUE)
 
 
   if (!is.null(min_len) || !is.null(max_len)) len <- NULL
@@ -111,7 +105,7 @@ assert_length <- make_assertion(check_length)
 #' @export
 test_length <- make_test(check_length)
 
-# See <https://testthat.r-lib.org/articles/custom-expectation.html>.
+# See https://testthat.r-lib.org/articles/custom-expectation.html
 
 # #' @rdname check_length
 # #' @export

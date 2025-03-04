@@ -1,3 +1,3 @@
-test_that("*_choice() | general test", {
-  expect_true(test_choice("a", letters))
+test_that("*_choice() | General test", {
+  test_choice("a", letters) |> expect_true()
 })

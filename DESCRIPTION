@@ -8,38 +8,41 @@ Authors@R: c(
             role = c("aut", "cre", "ccp", "cph"),
             email = "danvartan@gmail.com",
             comment = c(ORCID = "0000-0001-7782-759X")
-            )
         )
-Description: Provides a set of functions that produce pretty and informative 
+    )
+Description: Provides a set of functions that produce pretty and informative
      error messages.
 License: MIT + file LICENSE
-URL: https://github.com/danielvartan/prettycheck/
+URL: https://danielvartan.github.io/prettycheck/,
+    https://github.com/danielvartan/prettycheck/
 BugReports: https://github.com/danielvartan/prettycheck/issues/
 Depends:
     R (>= 4.3)
-Imports: 
+Imports:
     checkmate (>= 2.3.2),
     cli (>= 3.6.3),
-    curl (>= 5.2.3),
-    data.table (>= 1.16.2),
-    fastmatch (>= 1.1.4),
+    curl (>= 6.2.1),
+    data.table (>= 1.17.0),
+    fastmatch (>= 1.1.6),
     glue (>= 1.8.0),
+    grDevices (>= 4.3.0),
     hms (>= 1.1.3),
     lifecycle (>= 1.0.4),
-    lubridate (>= 1.9.3),
+    lubridate (>= 1.9.4),
     magrittr (>= 2.0.3),
-    rlang (>= 1.1.4),
+    R6 (>= 2.5.1),
     rutils,
     stringr (>= 1.5.1),
     tibble (>= 3.2.1),
     utils (>= 4.3)
-Suggests: 
+Suggests:
     covr (>= 3.6.4),
-    knitr (>= 1.48),
+    knitr (>= 1.49),
     mockr (>= 0.2.1),
-    spelling (>= 2.3.1),
-    testthat (>= 3.2.1.1)
-Remotes: 
+    rlang (>= 1.1.4),
+    testthat (>= 3.2.2),
+    spelling (>= 2.3.1)
+Remotes:
     github::danielvartan/rutils
 Config/testthat/edition: 3
 Encoding: UTF-8
@@ -48,7 +51,7 @@ LazyData: true
 LazyDataCompression: bzip2
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Collate: 
+Collate:
     'make_check.R'
     'a_collate.R'
     'access.R'
@@ -71,10 +74,12 @@ Collate:
     'disjunct.R'
     'double.R'
     'duration.R'
+    'length.R'
     'empty.R'
     'environment.R'
     'factor.R'
     'false.R'
+    'file.R'
     'file_exists.R'
     'finite.R'
     'flag.R'
@@ -83,13 +88,13 @@ Collate:
     'hms.R'
     'identical.R'
     'infinite.R'
+    'int.R'
     'integer.R'
     'integer_number.R'
     'integerish.R'
     'interactive.R'
     'internet.R'
     'interval.R'
-    'length.R'
     'less_or_equal_than.R'
     'list.R'
     'logical.R'
@@ -101,7 +106,6 @@ Collate:
     'nan.R'
     'not_empty.R'
     'null.R'
-    'null_ok.R'
     'number.R'
     'numeric.R'
     'os.R'
@@ -109,7 +113,6 @@ Collate:
     'period.R'
     'permutation.R'
     'pick.R'
-    'pkg_vars.R'
     'posixct.R'
     'posixt.R'
     'prettycheck-package.R'
@@ -128,4 +131,4 @@ Collate:
     'utils-mocks.R'
     'utils.R'
     'vector.R'
-    'whole_number.R'
+    'zzz.R'

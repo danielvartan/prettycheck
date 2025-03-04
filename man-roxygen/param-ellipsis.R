@@ -1,0 +1,1 @@
+#' @param ... Objects to compare.

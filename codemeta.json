@@ -4,6 +4,7 @@
   "identifier": "prettycheck",
   "description": "Provides a set of functions that produce pretty and informative error messages.",
   "name": "prettycheck: Pretty assertive programming",
+  "relatedLink": "https://danielvartan.github.io/prettycheck/",
   "codeRepository": "https://github.com/danielvartan/prettycheck/",
   "issueTracker": "https://github.com/danielvartan/prettycheck/issues/",
   "license": "https://spdx.org/licenses/MIT",
@@ -13,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.1 (2024-06-14 ucrt)",
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
   "author": [
     {
       "@type": "Person",
@@ -59,7 +60,7 @@
       "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
-      "version": ">= 1.48",
+      "version": ">= 1.49",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -83,6 +84,32 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "rlang",
+      "name": "rlang",
+      "version": ">= 1.1.4",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rlang"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.2.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "spelling",
       "name": "spelling",
       "version": ">= 2.3.1",
@@ -93,19 +120,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=spelling"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "testthat",
-      "name": "testthat",
-      "version": ">= 3.2.1.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "softwareRequirements": {
@@ -145,7 +159,7 @@
       "@type": "SoftwareApplication",
       "identifier": "curl",
       "name": "curl",
-      "version": ">= 5.2.3",
+      "version": ">= 6.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -158,7 +172,7 @@
       "@type": "SoftwareApplication",
       "identifier": "data.table",
       "name": "data.table",
-      "version": ">= 1.16.2",
+      "version": ">= 1.17.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -171,7 +185,7 @@
       "@type": "SoftwareApplication",
       "identifier": "fastmatch",
       "name": "fastmatch",
-      "version": ">= 1.1.4",
+      "version": ">= 1.1.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -195,6 +209,12 @@
     },
     "8": {
       "@type": "SoftwareApplication",
+      "identifier": "grDevices",
+      "name": "grDevices",
+      "version": ">= 4.3.0"
+    },
+    "9": {
+      "@type": "SoftwareApplication",
       "identifier": "hms",
       "name": "hms",
       "version": ">= 1.1.3",
@@ -206,7 +226,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=hms"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "lifecycle",
       "name": "lifecycle",
@@ -219,11 +239,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lifecycle"
     },
-    "10": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
-      "version": ">= 1.9.3",
+      "version": ">= 1.9.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -232,7 +252,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "11": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
@@ -245,26 +265,26 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "12": {
+    "13": {
       "@type": "SoftwareApplication",
-      "identifier": "rlang",
-      "name": "rlang",
-      "version": ">= 1.1.4",
+      "identifier": "R6",
+      "name": "R6",
+      "version": ">= 2.5.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=rlang"
+      "sameAs": "https://CRAN.R-project.org/package=R6"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "rutils",
       "name": "rutils",
       "sameAs": "https://github.com/danielvartan/rutils"
     },
-    "14": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -277,7 +297,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -290,7 +310,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "16": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils",
@@ -298,11 +318,11 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "81.768KB",
+  "fileSize": "136.315KB",
   "citation": [
     {
       "@type": "CreativeWork",
-      "datePublished": "2024",
+      "datePublished": "2025",
       "author": [
         {
           "@type": "Person",
@@ -312,14 +332,14 @@
           "@id": "https://orcid.org/0000-0001-7782-759X"
         }
       ],
-      "name": "{prettycheck}: pretty assertive programming",
-      "url": "https://danielvartan.github.io/prettycheck/",
-      "description": "R package version 0.0.0.9000"
+      "name": "{prettycheck}: Pretty assertive programming",
+      "url": "https://danielvartan.github.io/prettycheck",
+      "description": "R package"
     }
   ],
   "releaseNotes": "https://github.com/danielvartan/prettycheck/blob/master/NEWS.md",
   "readme": "https://github.com/danielvartan/prettycheck/blob/main/README.md",
   "contIntegration": ["https://github.com/danielvartan/prettycheck/actions/workflows/check-standard.yaml", "https://app.codecov.io/gh/danielvartan/prettycheck?branch=main"],
-  "developmentStatus": ["https://www.repostatus.org/#wip", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
+  "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
   "keywords": ["argument-checks", "assertions", "checks", "defensive-programming", "error-messages", "r", "r-package", "tests", "testthat", "validation", "assertive-programming"]
 }

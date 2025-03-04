@@ -7,16 +7,13 @@
 # `*_identical()` check if multiple objects are identical by value, length, or
 # class.
 #'
-#' @param ... Objects to compare.
 #' @param type (optional) a string corresponding to the type of comparison to
 #'   perform. Valid values: `"value"`, `"length"`, and `"class"` (default:
 #'   `"value"`).
-#' @param .names (optional) a [character][base::as.character()] vector
-#'   containing names for each object in `...` (default:
-#'   `prettycheck:::get_names(...)`).  This argument is used internally and
-#'   should not be set by the user.
 #'
-#' @template return_a
+#' @template param-ellipsis
+#' @template param-.names
+#' @template return-default-minus-e
 #' @include make_check.R
 #' @export
 #'
@@ -37,7 +34,7 @@
 #' check_identical(x, y, type = "class") |> cli::cli_alert_warning()
 #' #> ! x and y must belong to the same class. # Expected
 check_identical <- function(
-    ...,
+    ..., #nolint
     type = "value",
     .names = get_names(...)
   ) {
