@@ -77,7 +77,8 @@ check_pick <- function( #nolint
 
   if (isTRUE(all_null)) {
     glue::glue("{names} cannot all be {{.strong NULL}}.")
-  } else if (!is.null(pick) && length(.names) == pick) {
+  } else if (!is.null(pick) && length(.names) == pick &&
+               length(not_null_values) < pick) {
     glue::glue("You must assign the {names} arguments.")
   } else if (!is.null(pick) && length(not_null_values) < pick) {
     glue::glue("You must pick {{.strong {pick}}} of the {names} arguments.")
@@ -91,7 +92,8 @@ check_pick <- function( #nolint
       "and {{.strong {{cli::col_red({max_pick})}}} ",
       "of the {names} arguments."
     )
-  } else if (!is.null(min_pick) && length(.names) == min_pick) {
+  } else if (!is.null(min_pick) && length(.names) == min_pick &&
+               length(not_null_values) < min_pick) {
     glue::glue("You must assign the {names} arguments.")
   } else if (!is.null(min_pick) && length(not_null_values) < min_pick) {
     glue::glue(

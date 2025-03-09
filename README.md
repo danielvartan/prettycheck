@@ -20,7 +20,7 @@ Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](C
 ## Overview
 
 Assertive programming doesn’t have to be ugly. If ultra-fast checks
-aren’t your top priority, `prettycheck` is for you. This R packge
+aren’t your top priority, `prettycheck` is for you. This R package
 provides a set of functions that produce pretty and informative error
 messages, primarily using the [`cli`](https://cli.r-lib.org/) package
 from [r-lib](https://github.com/r-lib).

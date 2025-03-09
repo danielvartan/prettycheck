@@ -30,7 +30,7 @@ library(stringr)
 
 ## Overview
 
-Assertive programming doesn’t have to be ugly. If ultra-fast checks aren’t your top priority, `prettycheck` is for you. This R packge provides a set of functions that produce pretty and informative error messages, primarily using the [`cli`](https://cli.r-lib.org/) package from [r-lib](https://github.com/r-lib).
+Assertive programming doesn’t have to be ugly. If ultra-fast checks aren’t your top priority, `prettycheck` is for you. This R package provides a set of functions that produce pretty and informative error messages, primarily using the [`cli`](https://cli.r-lib.org/) package from [r-lib](https://github.com/r-lib).
 
 `prettycheck` adheres to [tidyverse principles](https://tidyverse.tidyverse.org/articles/manifesto.html) and seamlessly integrates with the [tidyverse ecosystem](https://www.tidyverse.org/).
 
