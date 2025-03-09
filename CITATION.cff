@@ -323,6 +323,19 @@ references:
   doi: 10.32614/CRAN.package.knitr
   version: '>= 1.49'
 - type: software
+  title: latex2exp
+  abstract: 'latex2exp: Use LaTeX Expressions in Plots'
+  notes: Suggests
+  url: https://www.stefanom.io/latex2exp/
+  repository: https://CRAN.R-project.org/package=latex2exp
+  authors:
+  - family-names: Meschiari
+    given-names: Stefano
+    email: stefano.meschiari@gmail.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.latex2exp
+  version: '>= 0.9.6'
+- type: software
   title: mockr
   abstract: 'mockr: Mocking in R'
   notes: Suggests

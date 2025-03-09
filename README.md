@@ -19,15 +19,11 @@ Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](C
 
 ## Overview
 
-✨✔️✅❌🔍⚠️🛑💎✨🧹🔮🦄🎯🚦🔒🔧🎨
-
 Assertive programming doesn’t have to be ugly. If ultra-fast checks
-aren’t your top priority, `prettycheck` is for you.
-
-`prettycheck` is an R package that provides a set of functions that
-produce pretty and informative error messages, primarily using the
-[`cli`](https://cli.r-lib.org/) package from
-[r-lib](https://github.com/r-lib).
+aren’t your top priority, `prettycheck` is for you. This R packge
+provides a set of functions that produce pretty and informative error
+messages, primarily using the [`cli`](https://cli.r-lib.org/) package
+from [r-lib](https://github.com/r-lib).
 
 `prettycheck` adheres to [tidyverse
 principles](https://tidyverse.tidyverse.org/articles/manifesto.html) and
@@ -64,6 +60,8 @@ object invisibly.
 
 Here are some of the functions available:
 
+- [`assert_color()`](https://danielvartan.github.io/prettycheck/reference/assert_color.html):
+  Assert if an argument is a valid color
 - [`check_duration()`](https://danielvartan.github.io/prettycheck/reference/check_duration.html)
   `test_duration()` `assert_duration()`: Check if an argument is a
   [`Duration`](https://lubridate.tidyverse.org/reference/duration.html)
@@ -81,9 +79,6 @@ Here are some of the functions available:
 - [`check_length()`](https://danielvartan.github.io/prettycheck/reference/check_length.html)
   `test_length()` `assert_length()`: Check if an argument has a specific
   length
-- [`check_numeric()`](https://danielvartan.github.io/prettycheck/reference/check_numeric.html)
-  `test_numeric()` `assert_numeric()`: Check if an argument is a
-  `numeric` object
 - [`check_period()`](https://danielvartan.github.io/prettycheck/reference/check_period.html)
   `test_period()` `assert_period()`: Check if an argument is a
   [`Period`](https://lubridate.tidyverse.org/reference/period.html)
@@ -93,6 +88,9 @@ Here are some of the functions available:
 - [`check_posixt()`](https://danielvartan.github.io/prettycheck/reference/check_posixt.html)
   `test_period()` `assert_period()`: Check if an argument is a `POSIXt`
   object
+- [`check_temporal`](https://danielvartan.github.io/prettycheck/reference/check_temporal.html)
+  `test_temporal()` `assert_temporal()`: Check if an argument is a
+  temporal object
 
 Click [here](https://danielvartan.github.io/prettycheck/) to see the
 full list of functions.
@@ -107,8 +105,8 @@ license](https://opensource.org/license/mit/).
 
 ## Contributing
 
-We welcome contributions, including bug reports. Take a moment to review
-our [Guidelines for
+Contributions are welcome, including bug reports. Take a moment to
+review the [Guidelines for
 Contributing](https://danielvartan.github.io/prettycheck/CONTRIBUTING.html).
 
 <br>

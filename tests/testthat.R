@@ -17,22 +17,16 @@ test_check("prettycheck")
 # devtools::check()
 # devtools::check(remote = TRUE, manual = TRUE)
 # devtools::check_mac_release()
-# devtools::check_rhub()
-# devtools::check_rhub(platforms = c(
-#     "windows-x86_64-devel", "windows-x86_64-release",
-#     "windows-x86_64-oldrel", "macos-highsierra-release-cran",
-#     "ubuntu-gcc-devel", "ubuntu-gcc-release"
-# ))
 # devtools::check_win_devel()
 # devtools::check_win_oldrelease()
 # devtools::check_win_release()
 # devtools::document()
 # devtools::install()
 # devtools::release()
+# devtools::submit_cran()
 # devtools:test()
 # goodpractice::gp()
 # lintr::lint_package()
-# lintr::use_lintr(type = "tidyverse")
 # pkgdown::build_article("x")
 # pkgdown::build_favicons(overwrite = TRUE)
 # pkgdown::build_reference()

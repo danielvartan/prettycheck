@@ -19,7 +19,9 @@
 #' @export
 #'
 #' @examples
+#' assert_color("#FFF")
 #' assert_color("#FF5733")
+#' assert_color("#FF0000FF")
 #' assert_color("blue")
 #' assert_color("transparent")
 #' assert_color(c("#FF5733", "blue", "transparent"))
@@ -32,7 +34,16 @@ assert_color <- function(
   assert_flag(null_ok)
   assert_character(color, any.missing = any_missing, null.ok = null_ok)
 
-  color_pattern <- "(?i)^#[a-f0-9]{3}$|(?i)^#[a-f0-9]{6}$|(?i)^transparent$"
+  color_pattern <-
+    paste0(
+      c(
+        "(?i)^#[a-f0-9]{3}$",
+        "(?i)^#[a-f0-9]{6}$",
+        "(?i)^#[a-f0-9]{8}$",
+        "(?i)^transparent$"
+      ),
+      collapse = "|"
+    )
 
   for (i in color) {
     if (!i %in% grDevices::colors() && #nolint

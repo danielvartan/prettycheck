@@ -28,7 +28,9 @@ names recognized by \code{grDevices::colors()} or valid hexadecimal color codes
 (\verb{#RGB} or \verb{#RRGGBB}).
 }
 \examples{
+assert_color("#FFF")
 assert_color("#FF5733")
+assert_color("#FF0000FF")
 assert_color("blue")
 assert_color("transparent")
 assert_color(c("#FF5733", "blue", "transparent"))

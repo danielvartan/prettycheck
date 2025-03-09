@@ -41,13 +41,14 @@ reference:
   contents:
   - assert_color
   - assert_color_options
+  - assert_ggplot_label
   - check_data
   - check_duration
   - check_empty
-  - check_internet
   - check_hms
   - check_identical
   - check_interactive
+  - check_internet
   - check_interval
   - check_length
   - check_not_empty

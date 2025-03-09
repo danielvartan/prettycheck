@@ -71,6 +71,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "latex2exp",
+      "name": "latex2exp",
+      "version": ">= 0.9.6",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=latex2exp"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "mockr",
       "name": "mockr",
       "version": ">= 0.2.1",
@@ -318,7 +331,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "136.315KB",
+  "fileSize": "138.879KB",
   "citation": [
     {
       "@type": "CreativeWork",

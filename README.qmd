@@ -30,8 +30,6 @@ library(stringr)
 
 ## Overview
 
-✨✔️✅❌🔍⚠️🛑💎✨🧹🔮🦄🎯🚦🔒🔧🎨
-
 Assertive programming doesn’t have to be ugly. If ultra-fast checks aren’t your top priority, `prettycheck` is for you. This R packge provides a set of functions that produce pretty and informative error messages, primarily using the [`cli`](https://cli.r-lib.org/) package from [r-lib](https://github.com/r-lib).
 
 `prettycheck` adheres to [tidyverse principles](https://tidyverse.tidyverse.org/articles/manifesto.html) and seamlessly integrates with the [tidyverse ecosystem](https://www.tidyverse.org/).
@@ -56,15 +54,16 @@ The `test_*()` functions return a logical flag; the `check_*()` functions throw 
 
 Here are some of the functions available:
 
+- [`assert_color()`](https://danielvartan.github.io/prettycheck/reference/assert_color.html): Assert if an argument is a valid color
 - [`check_duration()`](https://danielvartan.github.io/prettycheck/reference/check_duration.html) `test_duration()` `assert_duration()`: Check if an argument is a [`Duration`](https://lubridate.tidyverse.org/reference/duration.html) object
 - [`check_hms()`](https://danielvartan.github.io/prettycheck/reference/check_hms.html) `test_hms()` `assert_hms()`: Check if an argument is a [`hms`](https://hms.tidyverse.org/reference/hms.html) object
 - [`check_identical()`](https://danielvartan.github.io/prettycheck/reference/check_identical.html) `test_identical()` `assert_identical()`: Check if multiple objects are identical
 - [`check_interval()`](https://danielvartan.github.io/prettycheck/reference/check_interval.html) `test_interval()` `assert_interval()`: Check if an argument is an [`Interval`](https://lubridate.tidyverse.org/reference/interval.html) object
 - [`check_length()`](https://danielvartan.github.io/prettycheck/reference/check_length.html) `test_length()` `assert_length()`: Check if an argument has a specific length
-- [`check_numeric()`](https://danielvartan.github.io/prettycheck/reference/check_numeric.html) `test_numeric()` `assert_numeric()`: Check if an argument is a `numeric` object
 - [`check_period()`](https://danielvartan.github.io/prettycheck/reference/check_period.html) `test_period()` `assert_period()`: Check if an argument is a [`Period`](https://lubridate.tidyverse.org/reference/period.html) object
 - [`check_pick()`](https://danielvartan.github.io/prettycheck/reference/check_pick.html) `test_pick()` `assert_pick()`: Check how many arguments were picked
 - [`check_posixt()`](https://danielvartan.github.io/prettycheck/reference/check_posixt.html) `test_period()` `assert_period()`: Check if an argument is a `POSIXt` object
+- [`check_temporal`](https://danielvartan.github.io/prettycheck/reference/check_temporal.html) `test_temporal()` `assert_temporal()`: Check if an argument is a temporal object
 
 Click [here](https://danielvartan.github.io/prettycheck/) to see the full list of functions.
 
@@ -77,7 +76,7 @@ MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/lic
 
 ## Contributing
 
-We welcome contributions, including bug reports. Take a moment to review our [Guidelines for Contributing](https://danielvartan.github.io/prettycheck/CONTRIBUTING.html).
+Contributions are welcome, including bug reports. Take a moment to review the [Guidelines for Contributing](https://danielvartan.github.io/prettycheck/CONTRIBUTING.html).
 
 <br>
 

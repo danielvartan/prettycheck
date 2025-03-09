@@ -38,6 +38,7 @@ Imports:
 Suggests:
     covr (>= 3.6.4),
     knitr (>= 1.49),
+    latex2exp (>= 0.9.6),
     mockr (>= 0.2.1),
     rlang (>= 1.1.4),
     testthat (>= 3.2.2),
@@ -85,6 +86,7 @@ Collate:
     'flag.R'
     'formula.R'
     'function.R'
+    'ggplot.R'
     'hms.R'
     'identical.R'
     'infinite.R'
