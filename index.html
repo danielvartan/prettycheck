@@ -63,9 +63,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>✨✔️✅❌🔍⚠️🛑💎✨🧹🔮🦄🎯🚦🔒🔧🎨</p>
-<p>Assertive programming doesn’t have to be ugly. If ultra-fast checks aren’t your top priority, <code>prettycheck</code> is for you.</p>
-<p><code>prettycheck</code> is an R package that provides a set of functions that produce pretty and informative error messages, primarily using the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code></a> package from <a href="https://github.com/r-lib" class="external-link">r-lib</a>.</p>
+<p>Assertive programming doesn’t have to be ugly. If ultra-fast checks aren’t your top priority, <code>prettycheck</code> is for you. This R packge provides a set of functions that produce pretty and informative error messages, primarily using the <a href="https://cli.r-lib.org/" class="external-link"><code>cli</code></a> package from <a href="https://github.com/r-lib" class="external-link">r-lib</a>.</p>
 <p><code>prettycheck</code> adheres to <a href="https://tidyverse.tidyverse.org/articles/manifesto.html" class="external-link">tidyverse principles</a> and seamlessly integrates with the <a href="https://www.tidyverse.org/" class="external-link">tidyverse ecosystem</a>.</p>
 <p>Need faster assertive programming? Try <a href="https://mllg.github.io/checkmate/" class="external-link"><code>checkmate</code></a>. Since <code>prettycheck</code> uses the same structural approach to checks, transitioning between packages is straightforward. You can also use both packages together without conflicts.</p>
 </div>
@@ -84,6 +82,8 @@
 <p>Here are some of the functions available:</p>
 <ul>
 <li>
+<a href="https://danielvartan.github.io/prettycheck/reference/assert_color.html"><code>assert_color()</code></a>: Assert if an argument is a valid color</li>
+<li>
 <a href="https://danielvartan.github.io/prettycheck/reference/check_duration.html"><code>check_duration()</code></a> <code><a href="reference/check_duration.html">test_duration()</a></code> <code><a href="reference/check_duration.html">assert_duration()</a></code>: Check if an argument is a <a href="https://lubridate.tidyverse.org/reference/duration.html" class="external-link"><code>Duration</code></a> object</li>
 <li>
 <a href="https://danielvartan.github.io/prettycheck/reference/check_hms.html"><code>check_hms()</code></a> <code><a href="reference/check_hms.html">test_hms()</a></code> <code><a href="reference/check_hms.html">assert_hms()</a></code>: Check if an argument is a <a href="https://hms.tidyverse.org/reference/hms.html" class="external-link"><code>hms</code></a> object</li>
@@ -94,13 +94,13 @@
 <li>
 <a href="https://danielvartan.github.io/prettycheck/reference/check_length.html"><code>check_length()</code></a> <code><a href="reference/check_length.html">test_length()</a></code> <code><a href="reference/check_length.html">assert_length()</a></code>: Check if an argument has a specific length</li>
 <li>
-<a href="https://danielvartan.github.io/prettycheck/reference/check_numeric.html"><code>check_numeric()</code></a> <code><a href="reference/check_numeric.html">test_numeric()</a></code> <code><a href="reference/check_numeric.html">assert_numeric()</a></code>: Check if an argument is a <code>numeric</code> object</li>
-<li>
 <a href="https://danielvartan.github.io/prettycheck/reference/check_period.html"><code>check_period()</code></a> <code><a href="reference/check_period.html">test_period()</a></code> <code><a href="reference/check_period.html">assert_period()</a></code>: Check if an argument is a <a href="https://lubridate.tidyverse.org/reference/period.html" class="external-link"><code>Period</code></a> object</li>
 <li>
 <a href="https://danielvartan.github.io/prettycheck/reference/check_pick.html"><code>check_pick()</code></a> <code><a href="reference/check_pick.html">test_pick()</a></code> <code><a href="reference/check_pick.html">assert_pick()</a></code>: Check how many arguments were picked</li>
 <li>
 <a href="https://danielvartan.github.io/prettycheck/reference/check_posixt.html"><code>check_posixt()</code></a> <code><a href="reference/check_period.html">test_period()</a></code> <code><a href="reference/check_period.html">assert_period()</a></code>: Check if an argument is a <code>POSIXt</code> object</li>
+<li>
+<a href="https://danielvartan.github.io/prettycheck/reference/check_temporal.html"><code>check_temporal</code></a> <code><a href="reference/check_temporal.html">test_temporal()</a></code> <code><a href="reference/check_temporal.html">assert_temporal()</a></code>: Check if an argument is a temporal object</li>
 </ul>
 <p>Click <a href="https://danielvartan.github.io/prettycheck/">here</a> to see the full list of functions.</p>
 </div>
@@ -113,7 +113,7 @@
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
 </h2>
-<p>We welcome contributions, including bug reports. Take a moment to review our <a href="https://danielvartan.github.io/prettycheck/CONTRIBUTING.html">Guidelines for Contributing</a>.</p>
+<p>Contributions are welcome, including bug reports. Take a moment to review the <a href="https://danielvartan.github.io/prettycheck/CONTRIBUTING.html">Guidelines for Contributing</a>.</p>
 <p><br></p>
 <p>Become an <code>prettycheck</code> supporter!</p>
 <p>Click <a href="https://github.com/sponsors/danielvartan" class="external-link">here</a> to make a donation. Please indicate the <code>prettycheck</code> package in your donation message.</p>
