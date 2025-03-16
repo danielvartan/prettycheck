@@ -58,6 +58,7 @@ reference:
   - check_pick
   - check_posixt
   - check_scalar
+  - check_scientific_notation
   - check_temporal
 
 authors:

@@ -1,4 +1,4 @@
-test_that("assert_identical() | general test", {
+test_that("assert_identical() | General test", {
   assert_identical(1) |> expect_error()
   assert_identical(1, c(1, 1), type = "value") |> expect_error()
   assert_identical(1, 1, type = "value") |> checkmate::expect_list()

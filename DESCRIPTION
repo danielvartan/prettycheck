@@ -124,6 +124,7 @@ Collate:
     's3.R'
     's4.R'
     'scalar.R'
+    'scientific_notation.R'
     'set_equal.R'
     'string.R'
     'subset.R'
