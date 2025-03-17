@@ -127,3 +127,13 @@ cli_color_choices <- function() {
     "white", "yellow"
   )
 }
+
+# Functions exported from `rutils` package -----
+
+shush <- function(x, quiet = TRUE) {
+  if (isTRUE(quiet)) {
+    suppressMessages(suppressWarnings(x))
+  } else {
+    x
+  }
+}
